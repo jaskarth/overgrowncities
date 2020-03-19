@@ -1,31 +1,42 @@
 {
-  "schemaVersion": 1,
-  "id": "overgrowncities",
-  "version": "${version}",
-  "name": "Overgrown Cities",
-  "description": "Modfest 2020 Submission",
-  "authors": [
-    "SuperCoder79",
-    "TelepathicGrunt",
-    "halotroop2288"
-  ],
-  "license": "CC0-1.0",
-  "icon": "assets/overgrowncities/icon.png",
-  "environment": "*",
-  "entrypoints": {
-    "main": [
-      "supercoder79.overgrowncities.Overgrowncities"
-    ],
-    "client": [
-      "supercoder79.overgrowncities.OvergrowncitiesClient"
-    ]
-  },
-  "mixins": [
-    "overgrowncities.mixins.json"
-  ],
-  "depends": {
-    "fabricloader": ">=0.7.8+build.189",
-    "fabric": "*",
-    "minecraft": "1.15.2"
-  }
+	"schemaVersion": 1,
+	"id": "overgrowncities",
+	"version": "${version}",
+	"name": "Overgrown Cities",
+	"description": "Modfest 2020 Submission",
+	"authors": [
+		"SuperCoder79",
+		"TelepathicGrunt",
+		"halotroop2288"
+	],
+	"contact": {
+		"homepage": "https://modfest.github.io/",
+		"sources": "https://github.com/supercoder7979/overgrowncities/",
+		"issues": "https://github.com/supercoder7979/overgrowncities/issues"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/overgrowncities/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"supercoder79.overgrowncities.Overgrowncities"
+		],
+		"client": [
+			"supercoder79.overgrowncities.OvergrowncitiesClient"
+		]
+	},
+	"mixins": [
+		"overgrowncities.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.7.8",
+		"fabric": "*",
+		"minecraft": "1.15.2"
+	},
+	"suggests": {
+		"modmenu": ">=1.10",
+		"ecotones": "*",
+		"bumblezone": "*",
+		"exfeatures": "*"
+	}
 }
