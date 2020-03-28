@@ -15,6 +15,9 @@ import overgrowncities.biome.OvergrowthWildernessBiome;
 import overgrowncities.init.OvergrownBiomes;
 import overgrowncities.init.OvergrownFeatures;
 import overgrowncities.world.OvergrowthDimension;
+import overgrowncities.world.features.OgFeatures;
+
+import javax.print.DocFlavor;
 
 public class OvergrownCities implements ModInitializer {
 	public static EntityPlacer FIND_SURFACE = (entity, world, dim, offsetX, offsetZ) -> new BlockPattern.TeleportTarget(
@@ -29,6 +32,7 @@ public class OvergrownCities implements ModInitializer {
 			(int)entity.yaw);
 
 	public static DimensionType OVERGROWTH;
+	public static String MOD_ID = "overgrowncities";
 
 	@Override
 	public void onInitialize() {
@@ -36,13 +40,14 @@ public class OvergrownCities implements ModInitializer {
 
 		OvergrownFeatures.init();
 		OvergrownBiomes.init();
+		OgFeatures.setupFeatures();
 
 		OVERGROWTH = FabricDimensionType.builder()
 				.biomeAccessStrategy(HorizontalVoronoiBiomeAccessType.INSTANCE)
 				.factory(OvergrowthDimension::new)
 				.defaultPlacer(FIND_SURFACE)
 				.skyLight(true)
-				.buildAndRegister(new Identifier("overgrowncities", "overgrowth"));
+				.buildAndRegister(new Identifier(MOD_ID, "overgrowth"));
 		System.out.println("Registering The Overgrowth at id " + OVERGROWTH.getRawId());
 	}
 }

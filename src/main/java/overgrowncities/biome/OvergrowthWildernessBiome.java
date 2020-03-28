@@ -9,16 +9,14 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.decorator.CountExtraChanceDecoratorConfig;
-import net.minecraft.world.gen.decorator.Decorator;
-import net.minecraft.world.gen.decorator.LeaveVineTreeDecorator;
-import net.minecraft.world.gen.decorator.NoiseHeightmapDecoratorConfig;
+import net.minecraft.world.gen.decorator.*;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 import org.spongepowered.asm.mixin.Overwrite;
 import overgrowncities.treedecorator.ManyVinesTreeDecorator;
+import overgrowncities.world.features.OgFeatures;
 
 public class OvergrowthWildernessBiome extends OvergrowthBiome {
     public OvergrowthWildernessBiome() {
@@ -33,6 +31,9 @@ public class OvergrowthWildernessBiome extends OvergrowthBiome {
                 .waterColor(0x236e37)
                 .waterFogColor(0x236e37)
                 .parent(null), 5);
+
+        this.addStructureFeature(OgFeatures.CITY_STRUCTURE.configure(FeatureConfig.DEFAULT));
+        this.addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, OgFeatures.CITY_STRUCTURE.configure(FeatureConfig.DEFAULT).createDecoratedFeature(Decorator.NOPE.configure(DecoratorConfig.DEFAULT)));
 
         DefaultBiomeFeatures.addLandCarvers(this);
         DefaultBiomeFeatures.addMineables(this);
