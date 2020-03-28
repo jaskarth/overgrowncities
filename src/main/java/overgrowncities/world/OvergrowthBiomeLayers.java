@@ -6,6 +6,8 @@ import net.minecraft.world.biome.layer.util.*;
 import net.minecraft.world.biome.source.BiomeLayerSampler;
 import net.minecraft.world.gen.chunk.OverworldChunkGeneratorConfig;
 import net.minecraft.world.level.LevelGeneratorType;
+import overgrowncities.world.layer.CityLayer;
+import overgrowncities.world.layer.CityMerger;
 import overgrowncities.world.layer.ContinentLayer;
 import overgrowncities.world.layer.EdgeLayer;
 
@@ -34,7 +36,19 @@ public class OvergrowthBiomeLayers {
         continentFactory = EdgeLayer.INSTANCE.create(contextProvider.apply(5L), continentFactory);
 
         //scale up again to make beaches bigger
-        continentFactory = stack(100L, ScaleLayer.NORMAL, continentFactory, 2, contextProvider);
+        continentFactory = stack(200L, ScaleLayer.NORMAL, continentFactory, 2, contextProvider);
+
+        //initialize the city layer
+        LayerFactory<T> cityFactory = CityLayer.INSTANCE.create(contextProvider.apply(3L));
+
+        //suburb transformation
+        cityFactory = EdgeLayer.INSTANCE.create(contextProvider.apply(6L), cityFactory);
+
+        //scale up to a reasonable size
+        cityFactory = stack(300L, ScaleLayer.NORMAL, cityFactory, 4, contextProvider);
+
+        //merge the two
+        continentFactory = CityMerger.INSTANCE.create(contextProvider.apply(54L), continentFactory, cityFactory);
 
         return continentFactory;
     }
