@@ -9,10 +9,11 @@ import overgrowncities.init.OvergrownBiomes;
 public enum ContinentLayer implements InitLayer, IdentityCoordinateTransformer {
     INSTANCE;
 
-    private static int ID = Registry.BIOME.getRawId(OvergrownBiomes.WILDERNESS);
+    private static int WILD = Registry.BIOME.getRawId(OvergrownBiomes.WILDERNESS);
+    private static int LAKE = Registry.BIOME.getRawId(OvergrownBiomes.LAKE);
 
     @Override
     public int sample(LayerRandomnessSource context, int x, int y) {
-        return ID;
+        return context.nextInt(9) == 0 ? LAKE : WILD;
     }
 }

@@ -31,6 +31,8 @@ public class OvergrownCities implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+        FindBiomeCommand.register();
+
 		OvergrownBiomes.init();
 
 		OVERGROWTH = FabricDimensionType.builder()

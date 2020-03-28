@@ -8,6 +8,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeSource;
 import net.minecraft.world.gen.chunk.OverworldChunkGeneratorConfig;
 import net.minecraft.world.gen.chunk.SurfaceChunkGenerator;
+import overgrowncities.biome.OvergrowthBiome;
 
 public class OvergrowthChunkGenerator extends SurfaceChunkGenerator<OverworldChunkGeneratorConfig> {
     private static final float[] BIOME_WEIGHT_TABLE = Util.make(new float[25], (fs) -> {
@@ -33,14 +34,16 @@ public class OvergrowthChunkGenerator extends SurfaceChunkGenerator<OverworldChu
         float f = 0.0F;
         float g = 0.0F;
         float h = 0.0F;
+        double heightMod = 0;
         int j = this.getSeaLevel();
         float k = this.biomeSource.getBiomeForNoiseGen(x, j, z).getDepth();
 
         for(int l = -2; l <= 2; ++l) {
             for(int m = -2; m <= 2; ++m) {
-                Biome biome = this.biomeSource.getBiomeForNoiseGen(x + l, j, z + m);
+                OvergrowthBiome biome = (OvergrowthBiome) this.biomeSource.getBiomeForNoiseGen(x + l, j, z + m);
                 float n = biome.getDepth();
                 float o = biome.getScale();
+                double mod = biome.getHeightMod();
 
                 float p = BIOME_WEIGHT_TABLE[l + 2 + (m + 2) * 5] / (n + 2.0F);
                 if (biome.getDepth() > k) {
@@ -49,15 +52,18 @@ public class OvergrowthChunkGenerator extends SurfaceChunkGenerator<OverworldChu
 
                 f += o * p;
                 g += n * p;
+                heightMod += (mod * p);
                 h += p;
             }
         }
 
         f /= h;
         g /= h;
+        heightMod /= h;
+
         f = f * 0.9F; // + 0.1F
         g = (g * 4.0F - 1.0F) / 8.0F;
-        ds[0] = (double)g + this.sampleNoise(x, z);
+        ds[0] = (double)g + this.sampleNoise(x, z, heightMod);
         ds[1] = f;
         return ds;
     }
@@ -82,7 +88,7 @@ public class OvergrowthChunkGenerator extends SurfaceChunkGenerator<OverworldChu
         return 64;
     }
 
-    private double sampleNoise(int x, int y) {
+    private double sampleNoise(int x, int y, double mod) {
         double d = this.depthSampler.sample((double)(x * 200), 10.0D, (double)(y * 200), 1.0D, 0.0D, true) * 65535.0D / 8000.0D;
         if (d < 0.0D) {
             d = -d * 0.3D;
@@ -100,6 +106,6 @@ public class OvergrowthChunkGenerator extends SurfaceChunkGenerator<OverworldChu
         }
 
 //        return d;
-        return Math.abs(d*5);
+        return Math.abs(d*mod);
     }
 }
