@@ -18,6 +18,7 @@ import java.util.List;
 
 public class CityStructurePieces {
     public static void addPieces(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, BlockPos pos, List<StructurePiece> pieces, ChunkRandom random) {
+        //"village/plains/town_centers"
         StructurePoolBasedGenerator.addPieces(new Identifier(OvergrownCities.MOD_ID+":city/center"), 50, VillageGenerator.Piece::new, chunkGenerator, structureManager, pos, pieces, random);
     }
 

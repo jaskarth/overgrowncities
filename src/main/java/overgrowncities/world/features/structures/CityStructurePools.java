@@ -16,7 +16,45 @@ import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.gen.feature.Feature;
 
 public class CityStructurePools {
+    static {
 
+		ImmutableList<StructureProcessor> immutableList2 = ImmutableList.of(new RuleStructureProcessor(ImmutableList.of(
+			new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.LIGHT_GRAY_CONCRETE_POWDER, 0.1F), AlwaysTrueRuleTest.INSTANCE, Blocks.STONE.getDefaultState()),
+			new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.POLISHED_ANDESITE, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
+			new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.LIGHT_GRAY_CONCRETE, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
+			new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.STONE_BRICK_WALL, 0.15F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
+			new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.IRON_TRAPDOOR, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
+			new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.POLISHED_ANDESITE_STAIRS, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
+			new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.POLISHED_ANDESITE_SLAB, 0.08F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
+			new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.STONE_BUTTON, 0.1F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
+			new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.STONE_PRESSURE_PLATE, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
+			new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.ANDESITE_WALL, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
+			new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.STONE_SLAB, 0.08F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
+			new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.IRON_BARS, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
+			new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.POLISHED_ANDESITE, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
+			new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.CYAN_TERRACOTTA, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState())
+		)));
+
+		StructurePoolBasedGenerator.REGISTRY.add(new StructurePool(new Identifier("overgrowncities/buildings"), new Identifier("village/plains/terminators"), ImmutableList.of(
+				new Pair(new SinglePoolElement("overgrowncities/buildings/warehouse/warehouse_se_corner", immutableList2), 2)),
+				StructurePool.Projection.RIGID));
+
+		StructurePoolBasedGenerator.REGISTRY.add(new StructurePool(new Identifier("overgrowncities/buildings/warehouse"), new Identifier("village/plains/terminators"), ImmutableList.of(
+				new Pair(new SinglePoolElement("overgrowncities/buildings/warehouse/warehouse_sw_corner", immutableList2), 2),
+				new Pair(new SinglePoolElement("overgrowncities/buildings/warehouse/warehouse_ne_corner", immutableList2), 2),
+				new Pair(new SinglePoolElement("overgrowncities/buildings/warehouse/warehouse_nw_corner", immutableList2), 2)),
+				StructurePool.Projection.RIGID));
+
+		ImmutableList<StructureProcessor> pathModifier = ImmutableList.of(new RuleStructureProcessor(ImmutableList.of(
+				new StructureProcessorRule(new BlockMatchRuleTest(Blocks.GRAY_CONCRETE_POWDER), new BlockMatchRuleTest(Blocks.WATER), Blocks.GRAY_CONCRETE.getDefaultState()),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.GRAY_CONCRETE_POWDER, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.GRAY_CONCRETE.getDefaultState()))));
+
+		StructurePoolBasedGenerator.REGISTRY.add(new StructurePool(new Identifier("overgrowncities/streets"), new Identifier("village/plains/terminators"), ImmutableList.of(
+				new Pair(new SinglePoolElement("overgrowncities/streets/street1", pathModifier), 2),
+				new Pair(new SinglePoolElement("overgrowncities/streets/street2", pathModifier), 2),
+				new Pair(new SinglePoolElement("overgrowncities/streets/street4way", pathModifier), 2)),
+				StructurePool.Projection.TERRAIN_MATCHING));
+	}
 
     //formatted village pools for better reading
     static {
