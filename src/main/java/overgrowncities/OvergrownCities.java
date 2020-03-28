@@ -14,6 +14,7 @@ import net.minecraft.world.dimension.DimensionType;
 import overgrowncities.biome.OvergrowthWildernessBiome;
 import overgrowncities.init.OvergrownBiomes;
 import overgrowncities.world.OvergrowthDimension;
+import overgrowncities.world.features.OgFeatures;
 
 import javax.print.DocFlavor;
 
@@ -37,6 +38,7 @@ public class OvergrownCities implements ModInitializer {
         FindBiomeCommand.register();
 
 		OvergrownBiomes.init();
+		OgFeatures.setupFeatures();
 
 		OVERGROWTH = FabricDimensionType.builder()
 				.biomeAccessStrategy(HorizontalVoronoiBiomeAccessType.INSTANCE)

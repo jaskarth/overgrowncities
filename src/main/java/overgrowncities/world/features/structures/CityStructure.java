@@ -24,8 +24,8 @@ public class CityStructure extends StructureFeature<DefaultFeatureConfig> {
     }
 
     protected ChunkPos getStart(ChunkGenerator<?> chunkGenerator, Random random, int startXChunk, int startZChunk, int currentXChunk, int currentZChunk) {
-        int maxSeperation = chunkGenerator.getConfig().getVillageDistance();
-        int minSeperation = chunkGenerator.getConfig().getVillageSeparation();
+        int maxSeperation = 40;
+        int minSeperation = 30;
         int k = startXChunk + maxSeperation * currentXChunk;
         int p = startZChunk + maxSeperation * currentZChunk;
 
@@ -69,7 +69,7 @@ public class CityStructure extends StructureFeature<DefaultFeatureConfig> {
 
         public void initialize(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, int x, int z, Biome biome) {
             BlockPos blockPos = new BlockPos(x * 16, 0, z * 16);
-           // VillageGenerator.addPieces(chunkGenerator, structureManager, blockPos, this.children, this.random);
+            CityStructurePieces.addPieces(chunkGenerator, structureManager, blockPos, this.children, this.random);
             this.setBoundingBoxFromChildren();
         }
     }
