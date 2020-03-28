@@ -5,24 +5,19 @@
 	"name": "Overgrown Cities",
 	"description": "Modfest 2020 Submission",
 	"authors": [
-		"SuperCoder79",
-		"TelepathicGrunt",
-		"halotroop2288"
 	],
 	"contact": {
-		"homepage": "https://modfest.github.io/",
-		"sources": "https://github.com/supercoder7979/overgrowncities/",
-		"issues": "https://github.com/supercoder7979/overgrowncities/issues"
+		"homepage": "https://modfest.github.io/"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/overgrowncities/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"supercoder79.overgrowncities.Overgrowncities"
+			"overgrowncities.OvergrownCities"
 		],
 		"client": [
-			"supercoder79.overgrowncities.OvergrowncitiesClient"
+			"overgrowncities.OvergrownCitiesClient"
 		]
 	},
 	"mixins": [
@@ -34,9 +29,6 @@
 		"minecraft": "1.15.2"
 	},
 	"suggests": {
-		"modmenu": ">=1.10",
-		"ecotones": "*",
-		"bumblezone": "*",
-		"exfeatures": "*"
+		"modmenu": ">=1.10"
 	}
 }

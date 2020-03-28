@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "supercoder79.overgrowncities.mixin",
+  "package": "overgrowncities.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
   ],

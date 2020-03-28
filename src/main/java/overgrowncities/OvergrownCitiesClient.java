@@ -1,11 +1,11 @@
-package supercoder79.overgrowncities;
+package overgrowncities;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.Environment;
 import net.fabricmc.api.EnvType;
 
 @Environment(EnvType.CLIENT)
-public class OvergrowncitiesClient implements ClientModInitializer {
+public class OvergrownCitiesClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 
