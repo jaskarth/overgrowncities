@@ -1,4 +1,4 @@
-package overgrowncities.mixins;
+package overgrowncities.mixin;
 
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.server.command.LocateCommand;
@@ -26,7 +26,7 @@ public abstract class LocateCommandMixin {
     @Inject(method = "register", at = @At(value = "RETURN"))
     private static void onRegister(CommandDispatcher<ServerCommandSource> dispatcher, CallbackInfo info) {
         dispatcher.register(literal("locate").requires(source -> source.hasPermissionLevel(2))
-                .then(literal("OvegrownCities - City Structure").executes(ctx -> execute(ctx.getSource(), OvergrownCities.MOD_ID+":city_structure"))));
+                .then(literal("OvergrownCities:CityStructure").executes(ctx -> execute(ctx.getSource(), OvergrownCities.MOD_ID+":city_structure"))));
 
 
     }

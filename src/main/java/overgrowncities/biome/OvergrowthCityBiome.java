@@ -8,6 +8,7 @@ import net.minecraft.world.gen.decorator.DecoratorConfig;
 import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 import overgrowncities.init.OvergrownFeatures;
+import overgrowncities.world.features.OgFeatures;
 
 public class OvergrowthCityBiome extends OvergrowthBiome {
     public OvergrowthCityBiome() {
@@ -22,6 +23,9 @@ public class OvergrowthCityBiome extends OvergrowthBiome {
                 .waterColor(0x236e37)
                 .waterFogColor(0x236e37)
                 .parent(null), 0);
+
+//        this.addStructureFeature(OgFeatures.CITY_STRUCTURE.configure(FeatureConfig.DEFAULT));
+//        this.addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, OgFeatures.CITY_STRUCTURE.configure(FeatureConfig.DEFAULT).createDecoratedFeature(Decorator.NOPE.configure(DecoratorConfig.DEFAULT)));
 
         this.addFeature(GenerationStep.Feature.RAW_GENERATION,
                 OvergrownFeatures.ABANDONED_ROOM_FOUNDATION.configure(FeatureConfig.DEFAULT)
