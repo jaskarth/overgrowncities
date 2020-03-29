@@ -1,9 +1,5 @@
 package overgrowncities.biome;
 
-import com.google.common.collect.ImmutableList;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityCategory;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
@@ -11,12 +7,8 @@ import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.decorator.*;
 import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
-import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
-import org.spongepowered.asm.mixin.Overwrite;
-import overgrowncities.treedecorator.ManyVinesTreeDecorator;
-import overgrowncities.world.features.OgFeatures;
+import overgrowncities.feature.OgFeatures;
 
 public class OvergrowthWildernessBiome extends OvergrowthBiome {
     public OvergrowthWildernessBiome() {

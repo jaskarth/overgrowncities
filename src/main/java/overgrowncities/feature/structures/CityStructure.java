@@ -1,10 +1,8 @@
-package overgrowncities.world.features.structures;
+package overgrowncities.feature.structures;
 
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.structure.StructureManager;
 import net.minecraft.structure.StructureStart;
-import net.minecraft.structure.VillageGenerator;
-import net.minecraft.structure.VillageStructureStart;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;

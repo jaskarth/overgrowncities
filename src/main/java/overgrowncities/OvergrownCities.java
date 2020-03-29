@@ -6,18 +6,13 @@ import net.fabricmc.fabric.api.dimension.v1.FabricDimensionType;
 import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
-import net.minecraft.world.World;
 import net.minecraft.world.biome.source.HorizontalVoronoiBiomeAccessType;
 import net.minecraft.world.dimension.DimensionType;
-import overgrowncities.biome.OvergrowthWildernessBiome;
 import overgrowncities.init.OvergrownBiomes;
 import overgrowncities.init.OvergrownFeatures;
 import overgrowncities.world.OvergrowthDimension;
-import overgrowncities.world.features.OgFeatures;
-
-import javax.print.DocFlavor;
+import overgrowncities.feature.OgFeatures;
 
 public class OvergrownCities implements ModInitializer {
 	public static EntityPlacer FIND_SURFACE = (entity, world, dim, offsetX, offsetZ) -> new BlockPattern.TeleportTarget(

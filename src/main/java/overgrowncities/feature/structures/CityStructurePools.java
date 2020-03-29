@@ -1,19 +1,14 @@
-package overgrowncities.world.features.structures;
+package overgrowncities.feature.structures;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.PaneBlock;
 import net.minecraft.structure.pool.*;
 import net.minecraft.structure.processor.RuleStructureProcessor;
 import net.minecraft.structure.processor.StructureProcessor;
 import net.minecraft.structure.processor.StructureProcessorRule;
 import net.minecraft.structure.rule.*;
-import net.minecraft.tag.BlockTags;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.biome.DefaultBiomeFeatures;
-import net.minecraft.world.gen.feature.Feature;
 
 public class CityStructurePools {
     static {

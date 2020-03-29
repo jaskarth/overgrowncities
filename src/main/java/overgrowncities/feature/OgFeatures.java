@@ -1,12 +1,11 @@
-package overgrowncities.world.features;
+package overgrowncities.feature;
 
 import net.minecraft.structure.StructurePieceType;
-import net.minecraft.structure.VillageGenerator;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.feature.*;
 import overgrowncities.OvergrownCities;
-import overgrowncities.world.features.structures.CityStructure;
-import overgrowncities.world.features.structures.CityStructurePieces;
+import overgrowncities.feature.structures.CityStructure;
+import overgrowncities.feature.structures.CityStructurePieces;
 
 public class OgFeatures {
     public static StructureFeature<DefaultFeatureConfig> CITY_STRUCTURE = Registry.register(Registry.STRUCTURE_FEATURE, "city_structure", new CityStructure(DefaultFeatureConfig::deserialize));

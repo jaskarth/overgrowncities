@@ -1,4 +1,4 @@
-package overgrowncities.world.features.structures;
+package overgrowncities.feature.structures;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.structure.*;
@@ -10,9 +10,8 @@ import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.ChunkRandom;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.feature.VillageFeatureConfig;
 import overgrowncities.OvergrownCities;
-import overgrowncities.world.features.OgFeatures;
+import overgrowncities.feature.OgFeatures;
 
 import java.util.List;
 

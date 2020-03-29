@@ -8,7 +8,7 @@ import net.minecraft.world.gen.decorator.DecoratorConfig;
 import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 import overgrowncities.init.OvergrownFeatures;
-import overgrowncities.world.features.OgFeatures;
+import overgrowncities.feature.OgFeatures;
 
 public class OvergrowthCityBiome extends OvergrowthBiome {
     public OvergrowthCityBiome() {
