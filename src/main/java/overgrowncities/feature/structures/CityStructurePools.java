@@ -3,12 +3,15 @@ package overgrowncities.feature.structures;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.StoneButtonBlock;
+import net.minecraft.block.enums.WallMountLocation;
 import net.minecraft.structure.pool.*;
 import net.minecraft.structure.processor.RuleStructureProcessor;
 import net.minecraft.structure.processor.StructureProcessor;
 import net.minecraft.structure.processor.StructureProcessorRule;
 import net.minecraft.structure.rule.*;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Direction;
 import overgrowncities.OvergrownCities;
 
 public class CityStructurePools {
@@ -32,15 +35,22 @@ public class CityStructurePools {
 		)));
 
 		ImmutableList<StructureProcessor> pathModifier = ImmutableList.of(new RuleStructureProcessor(ImmutableList.of(
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.DIRT, 0.18F), AlwaysTrueRuleTest.INSTANCE, Blocks.STONE_PRESSURE_PLATE.getDefaultState()),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.DIRT, 0.08F), AlwaysTrueRuleTest.INSTANCE, Blocks.ANDESITE_SLAB.getDefaultState()),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.DIRT, 0.03F), AlwaysTrueRuleTest.INSTANCE, Blocks.ANDESITE.getDefaultState()),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.DIRT, 0.12F), AlwaysTrueRuleTest.INSTANCE, Blocks.STONE_BUTTON.getDefaultState().with(StoneButtonBlock.FACE, WallMountLocation.FLOOR).with(StoneButtonBlock.FACING, Direction.NORTH)),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.DIRT, 0.12F), AlwaysTrueRuleTest.INSTANCE, Blocks.STONE_BUTTON.getDefaultState().with(StoneButtonBlock.FACE, WallMountLocation.FLOOR).with(StoneButtonBlock.FACING, Direction.EAST)),
 				new StructureProcessorRule(new BlockMatchRuleTest(Blocks.GRAY_CONCRETE_POWDER), new BlockMatchRuleTest(Blocks.WATER), Blocks.GRAY_CONCRETE.getDefaultState()),
-				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.GRAY_CONCRETE_POWDER, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.GRAY_CONCRETE.getDefaultState()))));
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.GRAY_CONCRETE_POWDER, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.GRAY_CONCRETE.getDefaultState()),
+				new StructureProcessorRule(new BlockMatchRuleTest(Blocks.DIRT), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()))));
 
 		StructurePoolBasedGenerator.REGISTRY.add(new StructurePool(new Identifier(OvergrownCities.MOD_ID+":streets/start"), new Identifier("empty"), ImmutableList.of(
 				new Pair(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/start/street4way", pathModifier), 2)),
 				StructurePool.Projection.TERRAIN_MATCHING));
 
 		StructurePoolBasedGenerator.REGISTRY.add(new StructurePool(new Identifier(OvergrownCities.MOD_ID+":buildings"), new Identifier("village/plains/terminators"), ImmutableList.of(
-				new Pair(new SinglePoolElement(OvergrownCities.MOD_ID+":buildings/warehouse_se_corner", destructionRules), 2)),
+				new Pair(new SinglePoolElement(OvergrownCities.MOD_ID+":buildings/warehouse_se_corner", destructionRules), 2),
+				new Pair(new SinglePoolElement(OvergrownCities.MOD_ID+":buildings/lampost", destructionRules), 2)),
 				StructurePool.Projection.RIGID));
 
 		StructurePoolBasedGenerator.REGISTRY.add(new StructurePool(new Identifier(OvergrownCities.MOD_ID+":buildings/warehouse"), new Identifier("village/plains/terminators"), ImmutableList.of(
@@ -50,8 +60,10 @@ public class CityStructurePools {
 				StructurePool.Projection.RIGID));
 
 		StructurePoolBasedGenerator.REGISTRY.add(new StructurePool(new Identifier(OvergrownCities.MOD_ID+":streets"), new Identifier("village/plains/terminators"), ImmutableList.of(
-				new Pair(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/street1", pathModifier), 10),
-				new Pair(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/street2", pathModifier), 10),
+				new Pair(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/street1", pathModifier), 2),
+				new Pair(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/street2", pathModifier), 2),
+				new Pair(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/street3", pathModifier), 2),
+				new Pair(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/street4", pathModifier), 2),
 				new Pair(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/street4way", pathModifier), 2)),
 				StructurePool.Projection.TERRAIN_MATCHING));
 	}
