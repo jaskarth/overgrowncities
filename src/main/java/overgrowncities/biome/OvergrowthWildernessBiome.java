@@ -23,7 +23,10 @@ public class OvergrowthWildernessBiome extends OvergrowthBiome {
                 .waterColor(0x236e37)
                 .waterFogColor(0x236e37)
                 .parent(null), 5);
+        
+        this.addStructureFeature(OgFeatures.CITY_STRUCTURE.configure(FeatureConfig.DEFAULT));
 
+        OgFeatures.addFeaturesOfStructures(this);
         DefaultBiomeFeatures.addLandCarvers(this);
         DefaultBiomeFeatures.addMineables(this);
         DefaultBiomeFeatures.addDefaultDisks(this);
