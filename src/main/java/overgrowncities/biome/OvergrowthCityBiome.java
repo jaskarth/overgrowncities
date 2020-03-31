@@ -26,14 +26,6 @@ public class OvergrowthCityBiome extends OvergrowthBiome {
 
         this.addStructureFeature(OgFeatures.CITY_STRUCTURE.configure(FeatureConfig.DEFAULT));
 
-//        this.addFeature(GenerationStep.Feature.RAW_GENERATION,
-//                OvergrownFeatures.ABANDONED_ROOM_FOUNDATION.configure(FeatureConfig.DEFAULT)
-//                        .createDecoratedFeature(Decorator.COUNT_EXTRA_HEIGHTMAP.configure(new CountExtraChanceDecoratorConfig(0, 0.65f, 1))));
-//
-//        this.addFeature(GenerationStep.Feature.LOCAL_MODIFICATIONS,
-//                OvergrownFeatures.ABANDONED_ROOM_WALLS.configure(FeatureConfig.DEFAULT)
-//                        .createDecoratedFeature(Decorator.NOPE.configure(DecoratorConfig.DEFAULT)));
-
         OgFeatures.addFeaturesOfStructures(this);
         DefaultBiomeFeatures.addMineables(this);
         DefaultBiomeFeatures.addPlainsTallGrass(this);

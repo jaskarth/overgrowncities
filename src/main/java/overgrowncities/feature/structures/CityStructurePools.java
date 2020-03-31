@@ -45,18 +45,18 @@ public class CityStructurePools {
 				new StructureProcessorRule(new BlockMatchRuleTest(Blocks.DIRT), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()))));
 
 		StructurePoolBasedGenerator.REGISTRY.add(new StructurePool(new Identifier(OvergrownCities.MOD_ID+":streets/start"), new Identifier("empty"), ImmutableList.of(
-				new Pair(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/start/street4way", pathModifier), 2)),
+				new Pair<>(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/start/street4way", pathModifier), 2)),
 				StructurePool.Projection.TERRAIN_MATCHING));
 
 		StructurePoolBasedGenerator.REGISTRY.add(new StructurePool(new Identifier(OvergrownCities.MOD_ID+":buildings"), new Identifier("village/plains/terminators"), ImmutableList.of(
-				new Pair(new SinglePoolElement(OvergrownCities.MOD_ID+":buildings/testbuilding", destructionRules), 2)),
+				new Pair<>(new SinglePoolElement(OvergrownCities.MOD_ID+":buildings/testbuilding", destructionRules), 2)),
 				StructurePool.Projection.RIGID));
 
 		StructurePoolBasedGenerator.REGISTRY.add(new StructurePool(new Identifier(OvergrownCities.MOD_ID+":streets/straight"), new Identifier("village/plains/terminators"), ImmutableList.of(
-				new Pair(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/straight/street1", pathModifier), 2),
-				new Pair(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/straight/street2", pathModifier), 2),
-				new Pair(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/straight/street3", pathModifier), 2),
-				new Pair(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/straight/street4", pathModifier), 2)),
+				new Pair<>(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/straight/street1", pathModifier), 2),
+				new Pair<>(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/straight/street2", pathModifier), 2),
+				new Pair<>(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/straight/street3", pathModifier), 2),
+				new Pair<>(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/straight/street4", pathModifier), 2)),
 				StructurePool.Projection.TERRAIN_MATCHING));
 	}
 
