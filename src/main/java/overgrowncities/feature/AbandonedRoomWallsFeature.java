@@ -21,26 +21,42 @@ public class AbandonedRoomWallsFeature extends Feature<DefaultFeatureConfig> {
 
     @Override
     public boolean generate(IWorld world, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
-        for (int x = 0; x < 16; x++) {
-            for (int z = 0; z < 16; z++) {
+        boolean isGround = false;
+        for (int x = -15; x < 32; x++) {
+            for (int z = -15; z < 32; z++) {
                 //we are at ground level
                 BlockPos localPos = pos.add(x, world.getTopY(Heightmap.Type.MOTION_BLOCKING, pos.getX() + x, pos.getZ() + z) - 1, z);
+                if (world.getBlockState(localPos) == Blocks.GRASS.getDefaultState()) {
+                    isGround = true;
+                    break;
+                }
+            }
+        }
 
-                //castle transformer
-                boolean n = isStoneBrick(world, localPos.north());
-                boolean e = isStoneBrick(world, localPos.east());
-                boolean s = isStoneBrick(world, localPos.south());
-                boolean w = isStoneBrick(world, localPos.west());
-                boolean center = isStoneBrick(world, localPos);
+        if (isGround) {
+            for (int x = -15; x < 32; x++) {
+                for (int z = -15; z < 32; z++) {
+                    //we are at ground level
+                    BlockPos localPos = pos.add(x, world.getTopY(Heightmap.Type.MOTION_BLOCKING, pos.getX() + x, pos.getZ() + z) - 1, z);
 
-                //check center
-                if (center) {
-                    //if center is stone brick, that means we can check the sides for grass/air
-                    if (!n || !e || !s || !w) {
-                        //next to grass: build wall
-                        for (int i = 0; i < 4; i++) {
-                            placeStoneBrick(world, random, localPos.up(i + 1));
+                    //castle transformer
+                    boolean n = isStoneBrick(world, localPos.north());
+                    boolean e = isStoneBrick(world, localPos.east());
+                    boolean s = isStoneBrick(world, localPos.south());
+                    boolean w = isStoneBrick(world, localPos.west());
+                    boolean center = isStoneBrick(world, localPos);
+
+                    //check center
+                    if (center) {
+                        //if center is stone brick, that means we can check the sides for grass/air
+                        if (!n || !e || !s || !w) {
+                            //next to grass: build wall
+                            for (int i = 0; i < 4; i++) {
+                                placeStoneBrick(world, random, localPos.up(i + 1));
+                            }
                         }
+                        //place roof
+                        placeStoneBrick(world, random, localPos.up(5));
                     }
                 }
             }
