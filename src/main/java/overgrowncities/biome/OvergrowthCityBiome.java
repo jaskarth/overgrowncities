@@ -1,13 +1,8 @@
 package overgrowncities.biome;
 
 import net.minecraft.world.biome.DefaultBiomeFeatures;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.decorator.CountExtraChanceDecoratorConfig;
-import net.minecraft.world.gen.decorator.Decorator;
-import net.minecraft.world.gen.decorator.DecoratorConfig;
 import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
-import overgrowncities.init.OvergrownFeatures;
 import overgrowncities.feature.OgFeatures;
 
 public class OvergrowthCityBiome extends OvergrowthBiome {
