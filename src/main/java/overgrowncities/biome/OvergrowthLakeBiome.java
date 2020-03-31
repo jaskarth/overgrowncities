@@ -7,6 +7,7 @@ import net.minecraft.world.gen.decorator.CountExtraChanceDecoratorConfig;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
+import overgrowncities.feature.OgFeatures;
 
 public class OvergrowthLakeBiome extends OvergrowthBiome {
     public OvergrowthLakeBiome() {
@@ -22,6 +23,7 @@ public class OvergrowthLakeBiome extends OvergrowthBiome {
                 .waterFogColor(0x236e37)
                 .parent(null), 0.3);
 
+        OgFeatures.addFeaturesOfStructures(this);
         DefaultBiomeFeatures.addLandCarvers(this);
         DefaultBiomeFeatures.addMineables(this);
         DefaultBiomeFeatures.addDefaultDisks(this);

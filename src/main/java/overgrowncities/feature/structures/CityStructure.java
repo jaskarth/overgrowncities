@@ -57,7 +57,7 @@ public class CityStructure extends StructureFeature<DefaultFeatureConfig> {
 
     //legacy minecraft code that does nothing
     public int getRadius() {
-        return Integer.MAX_VALUE;
+        return 6;
     }
 
     public static class Start extends StructureStart {

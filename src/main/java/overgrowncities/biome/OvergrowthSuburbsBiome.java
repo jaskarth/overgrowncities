@@ -7,6 +7,7 @@ import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.decorator.DecoratorConfig;
 import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
+import overgrowncities.feature.OgFeatures;
 import overgrowncities.init.OvergrownFeatures;
 
 public class OvergrowthSuburbsBiome extends OvergrowthBiome {
@@ -31,6 +32,7 @@ public class OvergrowthSuburbsBiome extends OvergrowthBiome {
 //                OvergrownFeatures.ABANDONED_ROOM_WALLS.configure(FeatureConfig.DEFAULT)
 //                        .createDecoratedFeature(Decorator.NOPE.configure(DecoratorConfig.DEFAULT)));
 
+        OgFeatures.addFeaturesOfStructures(this);
         DefaultBiomeFeatures.addMineables(this);
         DefaultBiomeFeatures.addPlainsTallGrass(this);
         DefaultBiomeFeatures.addDefaultDisks(this);

@@ -24,8 +24,7 @@ public class OvergrowthCityBiome extends OvergrowthBiome {
                 .waterFogColor(0x236e37)
                 .parent(null), 0);
 
-//        this.addStructureFeature(OgFeatures.CITY_STRUCTURE.configure(FeatureConfig.DEFAULT));
-//        this.addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, OgFeatures.CITY_STRUCTURE.configure(FeatureConfig.DEFAULT).createDecoratedFeature(Decorator.NOPE.configure(DecoratorConfig.DEFAULT)));
+        this.addStructureFeature(OgFeatures.CITY_STRUCTURE.configure(FeatureConfig.DEFAULT));
 
 //        this.addFeature(GenerationStep.Feature.RAW_GENERATION,
 //                OvergrownFeatures.ABANDONED_ROOM_FOUNDATION.configure(FeatureConfig.DEFAULT)
@@ -35,6 +34,7 @@ public class OvergrowthCityBiome extends OvergrowthBiome {
 //                OvergrownFeatures.ABANDONED_ROOM_WALLS.configure(FeatureConfig.DEFAULT)
 //                        .createDecoratedFeature(Decorator.NOPE.configure(DecoratorConfig.DEFAULT)));
 
+        OgFeatures.addFeaturesOfStructures(this);
         DefaultBiomeFeatures.addMineables(this);
         DefaultBiomeFeatures.addPlainsTallGrass(this);
         DefaultBiomeFeatures.addDefaultDisks(this);
