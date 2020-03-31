@@ -1,6 +1,5 @@
 package overgrowncities.feature;
 
-import net.fabricmc.fabric.api.biomes.v1.FabricBiomes;
 import net.minecraft.structure.PlainsVillageData;
 import net.minecraft.structure.StructurePieceType;
 import net.minecraft.util.registry.Registry;
