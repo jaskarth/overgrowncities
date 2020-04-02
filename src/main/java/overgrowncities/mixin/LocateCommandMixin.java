@@ -27,6 +27,8 @@ public abstract class LocateCommandMixin {
     private static void onRegister(CommandDispatcher<ServerCommandSource> dispatcher, CallbackInfo info) {
         dispatcher.register(literal("locate").requires(source -> source.hasPermissionLevel(2))
                 .then(literal("OvergrownCities:CityStructure").executes(ctx -> execute(ctx.getSource(), OvergrownCities.MOD_ID+":city_structure"))));
+        dispatcher.register(literal("locate").requires(source -> source.hasPermissionLevel(2))
+                .then(literal("OvergrownCities:AbandonedWarehouse").executes(ctx -> execute(ctx.getSource(), OvergrownCities.MOD_ID+":abandoned_warehouse"))));
 
 
     }

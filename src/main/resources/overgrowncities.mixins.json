@@ -3,7 +3,8 @@
   "package": "overgrowncities.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "LocateCommandMixin"
+    "LocateCommandMixin",
+    "StructureLandMixin"
   ],
   "client": [
   ],

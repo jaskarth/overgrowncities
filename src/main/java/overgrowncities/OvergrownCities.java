@@ -36,6 +36,7 @@ public class OvergrownCities implements ModInitializer {
 		OvergrownFeatures.init();
 		OvergrownBiomes.init();
 		OgFeatures.setupFeatures();
+		OgFeatures.addWarehouseToOverworld();
 
 		OVERGROWTH = FabricDimensionType.builder()
 				.biomeAccessStrategy(HorizontalVoronoiBiomeAccessType.INSTANCE)
