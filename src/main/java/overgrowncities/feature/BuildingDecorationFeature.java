@@ -2,7 +2,9 @@ package overgrowncities.feature;
 
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.*;
+import net.minecraft.block.enums.BlockHalf;
 import net.minecraft.block.enums.SlabType;
+import net.minecraft.block.enums.StairShape;
 import net.minecraft.block.enums.WallMountLocation;
 import net.minecraft.state.property.Property;
 import net.minecraft.util.math.BlockPos;
@@ -31,7 +33,14 @@ public class BuildingDecorationFeature extends Feature<DefaultFeatureConfig> {
         BlockState currentBlock = world.getBlockState(position);
 
         if(random.nextFloat() < 0.05f && currentBlock.getMaterial() == Material.AIR){
-            if(world.getBlockState(position.down()).isOpaque()){
+            BlockState belowBlock = world.getBlockState(position.down());
+            if(( belowBlock.isOpaque() &&
+                    !(belowBlock.getBlock() instanceof StairsBlock ||
+                      belowBlock.getBlock() instanceof SlabBlock ||
+                      belowBlock.getBlock() instanceof WallBlock) ) ||
+                    (belowBlock.getBlock() instanceof StairsBlock && belowBlock.get(StairsBlock.HALF) == BlockHalf.TOP) ||
+                    (belowBlock.getBlock() instanceof SlabBlock && belowBlock.get(SlabBlock.TYPE) == SlabType.TOP)){
+
                 float chance = random.nextFloat();
                 if(chance < 0.40f){
                     world.setBlockState(position, Blocks.STONE_BUTTON.getDefaultState().with(StoneButtonBlock.FACING, random.nextBoolean() ? Direction.WEST : Direction.NORTH).with(StoneButtonBlock.FACE, WallMountLocation.FLOOR), 2);
@@ -52,7 +61,7 @@ public class BuildingDecorationFeature extends Feature<DefaultFeatureConfig> {
             else{
                 for (Direction direction : Direction.Type.HORIZONTAL)
                 {
-                    BlockState vineBlock = Blocks.VINE.getDefaultState().with(VineBlock.getFacingProperty(direction), Boolean.valueOf(true));
+                    BlockState vineBlock = Blocks.VINE.getDefaultState().with(VineBlock.getFacingProperty(direction), true);
                     if (vineBlock.canPlaceAt(world, position))
                     {
                         world.setBlockState(position, vineBlock, 2);
@@ -62,9 +71,9 @@ public class BuildingDecorationFeature extends Feature<DefaultFeatureConfig> {
                         BlockState aboveBlock = world.getBlockState(position.up());
                         if(aboveBlock.getBlock() instanceof SlabBlock && aboveBlock.get(SlabBlock.TYPE) == SlabType.BOTTOM){
                             world.setBlockState(position.up(), Blocks.ANDESITE.getDefaultState(), 2);
-                            world.setBlockState(position, vineBlock.with(VineBlock.UP, true), 2);
+                            world.setBlockState(position, vineBlock.with(VineBlock.UP, true).with(VineBlock.getFacingProperty(direction), true), 2);
 
-                            for(int down = 0; down <= random.nextInt(8); down++){
+                            for(int down = 0; down <= random.nextInt(random.nextInt(6) + 3) + 3; down++){
                                 if(world.getBlockState(position.down(down)).getMaterial() == Material.AIR)
                                     world.setBlockState(position.down(down), vineBlock, 2);
                             }

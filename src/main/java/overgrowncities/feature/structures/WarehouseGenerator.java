@@ -16,6 +16,7 @@ import net.minecraft.world.gen.feature.FeatureConfig;
 import overgrowncities.OvergrownCities;
 import overgrowncities.feature.OgFeatures;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -25,22 +26,34 @@ public class WarehouseGenerator {
    private static final Identifier SW_TEMPLATE = new Identifier(OvergrownCities.MOD_ID+":buildings/warehouse/warehouse_sw_corner");
    private static final Identifier NE_TEMPLATE = new Identifier(OvergrownCities.MOD_ID+":buildings/warehouse/warehouse_ne_corner");
    private static final Identifier NW_TEMPLATE = new Identifier(OvergrownCities.MOD_ID+":buildings/warehouse/warehouse_nw_corner");
+   private static final Identifier SE_FOUNDATION_TEMPLATE = new Identifier(OvergrownCities.MOD_ID+":buildings/warehouse/foundation_se_corner");
+   private static final Identifier SW_FOUNDATION_TEMPLATE = new Identifier(OvergrownCities.MOD_ID+":buildings/warehouse/foundation_sw_corner");
+   private static final Identifier NE_FOUNDATION_TEMPLATE = new Identifier(OvergrownCities.MOD_ID+":buildings/warehouse/foundation_ne_corner");
+   private static final Identifier NW_FOUNDATION_TEMPLATE = new Identifier(OvergrownCities.MOD_ID+":buildings/warehouse/foundation_nw_corner");
    private static final Map<Identifier, BlockPos> PIECES_OFFSET;
    private static final Map<Identifier, BlockPos> COUNTER_OFFSET;
    static {
-      PIECES_OFFSET = ImmutableMap.of(
-              SE_TEMPLATE, new BlockPos(-8, 0, -6),
-              SW_TEMPLATE, new BlockPos(9, 0, -6),
-              NE_TEMPLATE, new BlockPos(-8, 0, 6),
-              NW_TEMPLATE, new BlockPos(9, 0, 6)
-              );
+      Map<Identifier, BlockPos> tempMap = new HashMap<Identifier, BlockPos>();
+      tempMap.put(SE_TEMPLATE, new BlockPos(-8, 0, -6));
+      tempMap.put(SW_TEMPLATE, new BlockPos(9, 0, -6));
+      tempMap.put(NE_TEMPLATE, new BlockPos(-8, 0, 6));
+      tempMap.put(NW_TEMPLATE, new BlockPos(9, 0, 6));
+      tempMap.put(SE_FOUNDATION_TEMPLATE, new BlockPos(-8, -9, -6));
+      tempMap.put(SW_FOUNDATION_TEMPLATE, new BlockPos(9, -9, -6));
+      tempMap.put(NE_FOUNDATION_TEMPLATE, new BlockPos(-8, -9, 6));
+      tempMap.put(NW_FOUNDATION_TEMPLATE, new BlockPos(9, -9, 6));
+      PIECES_OFFSET = tempMap;
 
-      COUNTER_OFFSET = ImmutableMap.of(
-              SE_TEMPLATE, new BlockPos(8, 0, 6),
-              SW_TEMPLATE, new BlockPos(-9, 0, 6),
-              NE_TEMPLATE, new BlockPos(8, 0, -6),
-              NW_TEMPLATE, new BlockPos(-9, 0, -6)
-      );
+      tempMap = new HashMap<Identifier, BlockPos>();
+      tempMap.put(SE_TEMPLATE, new BlockPos(8, 0, 6));
+      tempMap.put(SW_TEMPLATE, new BlockPos(-9, 0, 6));
+      tempMap.put(NE_TEMPLATE, new BlockPos(8, 0, -6));
+      tempMap.put(NW_TEMPLATE, new BlockPos(-9, 0, -6));
+      tempMap.put(SE_FOUNDATION_TEMPLATE, new BlockPos(8, -9, 6));
+      tempMap.put(SW_FOUNDATION_TEMPLATE, new BlockPos(-9, -9, 6));
+      tempMap.put(NE_FOUNDATION_TEMPLATE, new BlockPos(8, -9, -6));
+      tempMap.put(NW_FOUNDATION_TEMPLATE, new BlockPos(-9, -9, -6));
+      COUNTER_OFFSET = tempMap;
    }
 
    public static void addPieces(StructureManager manager, BlockPos pos, BlockRotation rotation, List<StructurePiece> pieces, Random random) {
@@ -48,6 +61,10 @@ public class WarehouseGenerator {
       pieces.add(new WarehouseGenerator.Piece(manager, SW_TEMPLATE, pos, rotation));
       pieces.add(new WarehouseGenerator.Piece(manager, NE_TEMPLATE, pos, rotation));
       pieces.add(new WarehouseGenerator.Piece(manager, NW_TEMPLATE, pos, rotation));
+      pieces.add(new WarehouseGenerator.Piece(manager, SE_FOUNDATION_TEMPLATE, pos, rotation));
+      pieces.add(new WarehouseGenerator.Piece(manager, SW_FOUNDATION_TEMPLATE, pos, rotation));
+      pieces.add(new WarehouseGenerator.Piece(manager, NE_FOUNDATION_TEMPLATE, pos, rotation));
+      pieces.add(new WarehouseGenerator.Piece(manager, NW_FOUNDATION_TEMPLATE, pos, rotation));
    }
 
 
