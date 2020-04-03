@@ -1,6 +1,5 @@
 package overgrowncities.feature.structures;
 
-import com.google.common.collect.ImmutableMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.structure.*;
 import net.minecraft.structure.processor.BlockIgnoreStructureProcessor;
@@ -99,12 +98,14 @@ public class WarehouseGenerator {
          this.setStructureData(structure, this.pos, structurePlacementData);
       }
 
+      @Override
       protected void toNbt(CompoundTag tag) {
          super.toNbt(tag);
          tag.putString("Template", this.template.toString());
          tag.putString("Rot", this.rotation.name());
       }
 
+      @Override
       protected void handleMetadata(String metadata, BlockPos pos, IWorld world, Random random, BlockBox boundingBox) {
 //         if ("chest".equals(metadata)) {
 //            world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
@@ -115,6 +116,7 @@ public class WarehouseGenerator {
 //         }
       }
 
+      @Override
       public boolean generate(IWorld world, ChunkGenerator<?> generator, Random random, BlockBox box, ChunkPos pos) {
          StructurePlacementData structurePlacementData = (new StructurePlacementData()).setRotation(this.rotation).setMirrored(BlockMirror.NONE).setPosition((BlockPos) WarehouseGenerator.PIECES_OFFSET.get(this.template)).addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS);
          BlockPos blockPos = (BlockPos) WarehouseGenerator.COUNTER_OFFSET.get(this.template);
@@ -127,7 +129,7 @@ public class WarehouseGenerator {
             }
 
             for(BlockPos boxPosition : BlockPos.iterate(box.minX, this.pos.getY(), box.minZ, box.maxX, this.pos.getY()+17, box.maxZ)){
-               OgFeatures.BUILDING_VEGETATION.generate(world, generator, random, boxPosition, FeatureConfig.DEFAULT);
+               OgFeatures.BUILDING_DECORATION.generate(world, generator, random, boxPosition, FeatureConfig.DEFAULT);
             }
          }
          return created;

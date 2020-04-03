@@ -8,12 +8,16 @@ import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkRandom;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
+import net.minecraft.world.gen.feature.FeatureConfig;
 import overgrowncities.OvergrownCities;
 import overgrowncities.feature.OgFeatures;
 
 import java.util.List;
+import java.util.Random;
 
 public class CityStructurePieces {
     public static void addPieces(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, BlockPos pos, List<StructurePiece> pieces, ChunkRandom random) {
@@ -21,12 +25,27 @@ public class CityStructurePieces {
     }
 
     public static class Piece extends PoolStructurePiece {
+        private final StructureManager structureManager;
         public Piece(StructureManager structureManager, StructurePoolElement structurePoolElement, BlockPos blockPos, int size, BlockRotation blockRotation, BlockBox blockBox) {
             super(OgFeatures.CITY_PIECES, structureManager, structurePoolElement, blockPos, size, blockRotation, blockBox);
+            this.structureManager = structureManager;
         }
 
         public Piece(StructureManager structureManager, CompoundTag compoundTag) {
             super(structureManager, compoundTag, OgFeatures.CITY_PIECES);
+            this.structureManager = structureManager;
+        }
+
+        @Override
+        public boolean generate(IWorld world, ChunkGenerator<?> generator, Random random, BlockBox box, ChunkPos pos) {
+
+            boolean created = this.poolElement.generate(this.structureManager, world, generator, this.pos, this.rotation, box, random);
+            if(created){
+                for(BlockPos boxPosition : BlockPos.iterate(box.minX, this.pos.getY(), box.minZ, box.maxX, this.pos.getY()+32, box.maxZ)){
+                    OgFeatures.BUILDING_DECORATION.generate(world, generator, random, boxPosition, FeatureConfig.DEFAULT);
+                }
+            }
+            return created;
         }
     }
 }
