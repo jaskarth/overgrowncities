@@ -22,8 +22,8 @@ public class CityStructure extends StructureFeature<DefaultFeatureConfig> {
     }
 
     protected ChunkPos getStart(ChunkGenerator<?> chunkGenerator, Random random, int startXChunk, int startZChunk, int currentXChunk, int currentZChunk) {
-        int maxSeperation = 8;
-        int minSeperation = 7;
+        int maxSeperation = 10;
+        int minSeperation = 9;
         int k = startXChunk + maxSeperation * currentXChunk;
         int p = startZChunk + maxSeperation * currentZChunk;
 

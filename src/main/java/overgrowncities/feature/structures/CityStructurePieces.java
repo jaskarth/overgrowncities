@@ -42,7 +42,10 @@ public class CityStructurePieces {
             boolean created = this.poolElement.generate(this.structureManager, world, generator, this.pos, this.rotation, box, random);
             if(created){
                 for(BlockPos boxPosition : BlockPos.iterate(box.minX, this.pos.getY(), box.minZ, box.maxX, this.pos.getY()+32, box.maxZ)){
-                    OgFeatures.BUILDING_DECORATION.generate(world, generator, random, boxPosition, FeatureConfig.DEFAULT);
+                    OgFeatures.BUILDING_DEBRIS.generate(world, generator, random, boxPosition, FeatureConfig.DEFAULT);
+                }
+                for(BlockPos boxPosition : BlockPos.iterate(box.minX, this.pos.getY(), box.minZ, box.maxX, this.pos.getY()+32, box.maxZ)){
+                    OgFeatures.BUILDING_VEGETATION.generate(world, generator, random, boxPosition, FeatureConfig.DEFAULT);
                 }
             }
             return created;

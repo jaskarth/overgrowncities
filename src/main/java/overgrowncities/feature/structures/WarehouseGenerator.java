@@ -129,7 +129,11 @@ public class WarehouseGenerator {
             }
 
             for(BlockPos boxPosition : BlockPos.iterate(box.minX, this.pos.getY(), box.minZ, box.maxX, this.pos.getY()+17, box.maxZ)){
-               OgFeatures.BUILDING_DECORATION.generate(world, generator, random, boxPosition, FeatureConfig.DEFAULT);
+               OgFeatures.BUILDING_DEBRIS.generate(world, generator, random, boxPosition, FeatureConfig.DEFAULT);
+            }
+
+            for(BlockPos boxPosition : BlockPos.iterate(box.minX, this.pos.getY(), box.minZ, box.maxX, this.pos.getY()+17, box.maxZ)){
+               OgFeatures.BUILDING_VEGETATION.generate(world, generator, random, boxPosition, FeatureConfig.DEFAULT);
             }
          }
          return created;
