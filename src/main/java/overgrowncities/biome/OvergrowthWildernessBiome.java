@@ -25,7 +25,7 @@ public class OvergrowthWildernessBiome extends OvergrowthBiome {
                 .parent(null), 5);
 
         //TODO: remove after testing
-        this.addStructureFeature(OgFeatures.CITY_STRUCTURE.configure(FeatureConfig.DEFAULT));
+//        this.addStructureFeature(OgFeatures.CITY_STRUCTURE.configure(FeatureConfig.DEFAULT));
 
         OgFeatures.addFeaturesOfStructures(this);
         DefaultBiomeFeatures.addLandCarvers(this);
