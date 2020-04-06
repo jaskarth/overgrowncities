@@ -21,7 +21,7 @@ import java.util.Random;
 
 public class CityStructurePieces {
     public static void addPieces(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, BlockPos pos, List<StructurePiece> pieces, ChunkRandom random) {
-        StructurePoolBasedGenerator.addPieces(new Identifier(OvergrownCities.MOD_ID+":streets/start"), 200, CityStructurePieces.Piece::new, chunkGenerator, structureManager, pos, pieces, random);
+        StructurePoolBasedGenerator.addPieces(new Identifier(OvergrownCities.MOD_ID+":streets/start"), 1000, CityStructurePieces.Piece::new, chunkGenerator, structureManager, pos, pieces, random);
     }
 
     public static class Piece extends PoolStructurePiece {
