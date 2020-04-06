@@ -19,7 +19,8 @@ public class OgFeatures {
     public static StructurePieceType WAREHOUSE_PIECES =  Registry.register(Registry.STRUCTURE_PIECE, "abandoned_warehouse_pieces", WarehouseGenerator.Piece::new);
 
     public static Feature<DefaultFeatureConfig> BUILDING_DESTRUCTION = Registry.register(Registry.FEATURE, "building_destruction", new BuildingDestructionFeature(DefaultFeatureConfig::deserialize));
-    public static Feature<DefaultFeatureConfig> BUILDING_DECORATION = Registry.register(Registry.FEATURE, "building_decoration", new BuildingDecorationFeature(DefaultFeatureConfig::deserialize));
+    public static Feature<DefaultFeatureConfig> BUILDING_DEBRIS = Registry.register(Registry.FEATURE, "building_debris", new BuildingDebrisFeature(DefaultFeatureConfig::deserialize));
+    public static Feature<DefaultFeatureConfig> BUILDING_VEGETATION = Registry.register(Registry.FEATURE, "building_vegetation", new BuildingVegetationFeature(DefaultFeatureConfig::deserialize));
 
     public static void setupFeatures() {
         Feature.STRUCTURES.put(OvergrownCities.MOD_ID+":city_structure", CITY_STRUCTURE);

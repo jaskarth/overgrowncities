@@ -4,9 +4,7 @@ import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.BlockHalf;
 import net.minecraft.block.enums.SlabType;
-import net.minecraft.block.enums.StairShape;
 import net.minecraft.block.enums.WallMountLocation;
-import net.minecraft.state.property.Property;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.IWorld;
@@ -15,13 +13,11 @@ import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 import java.util.function.Function;
 
-public class BuildingDecorationFeature extends Feature<DefaultFeatureConfig> {
-    public BuildingDecorationFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> configDeserializer) {
+public class BuildingDebrisFeature extends Feature<DefaultFeatureConfig> {
+    public BuildingDebrisFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> configDeserializer) {
         super(configDeserializer);
     }
 
@@ -58,53 +54,8 @@ public class BuildingDecorationFeature extends Feature<DefaultFeatureConfig> {
                     world.setBlockState(position, Blocks.ANDESITE.getDefaultState(), 2);
                 }
             }
-            else{
-                for (Direction direction : Direction.Type.HORIZONTAL)
-                {
-                    BlockState vineBlock = Blocks.VINE.getDefaultState().with(VineBlock.getFacingProperty(direction), true);
-                    if (vineBlock.canPlaceAt(world, position))
-                    {
-                        world.setBlockState(position, vineBlock, 2);
-                        break;
-                    }
-                    else{
-                        BlockState aboveBlock = world.getBlockState(position.up());
-                        if(aboveBlock.getBlock() instanceof SlabBlock && aboveBlock.get(SlabBlock.TYPE) == SlabType.BOTTOM){
-                            world.setBlockState(position.up(), Blocks.ANDESITE.getDefaultState(), 2);
-                            world.setBlockState(position, vineBlock.with(VineBlock.UP, true).with(VineBlock.getFacingProperty(direction), true), 2);
-
-                            for(int down = 0; down <= random.nextInt(random.nextInt(6) + 3) + 3; down++){
-                                if(world.getBlockState(position.down(down)).getMaterial() == Material.AIR)
-                                    world.setBlockState(position.down(down), vineBlock, 2);
-                            }
-
-                            break;
-                        }
-                        else if (aboveBlock.getBlock() == Blocks.VINE)
-                        {
-                            world.setBlockState(position, world.getBlockState(position), 2);
-                            break;
-                        }
-                    }
-                }
-            }
         }
 
         return true;
-    }
-
-
-    private static void removeAttachedBlocks(IWorld world, BlockPos position){
-        for (Direction direction : Direction.Type.HORIZONTAL) {
-            Block neighboringBlock = world.getBlockState(position.offset(direction)).getBlock();
-            if (neighboringBlock instanceof StoneButtonBlock || neighboringBlock instanceof TrapdoorBlock) {
-                world.setBlockState(position.offset(direction), Blocks.AIR.getDefaultState(), 2);
-            }
-
-            neighboringBlock = world.getBlockState(position.up()).getBlock();
-            if(neighboringBlock instanceof PressurePlateBlock){
-                world.setBlockState(position.up(), Blocks.AIR.getDefaultState(), 2);
-            }
-        }
     }
 }

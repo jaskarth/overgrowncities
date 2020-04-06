@@ -2,9 +2,7 @@ package overgrowncities.feature.structures;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.StairsBlock;
-import net.minecraft.block.StoneButtonBlock;
+import net.minecraft.block.*;
 import net.minecraft.block.enums.BlockHalf;
 import net.minecraft.block.enums.WallMountLocation;
 import net.minecraft.structure.pool.*;
@@ -65,11 +63,20 @@ public class CityStructurePools {
 				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.REDSTONE_LAMP, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
 				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.JUNGLE_STAIRS, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
 
-				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.GLASS_PANE, 0.02F), AlwaysTrueRuleTest.INSTANCE, Blocks.YELLOW_STAINED_GLASS_PANE.getDefaultState()),
-				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.GLASS_PANE, 0.03F), AlwaysTrueRuleTest.INSTANCE, Blocks.WHITE_STAINED_GLASS_PANE.getDefaultState()),
-				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.GLASS_PANE, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.LIGHT_GRAY_STAINED_GLASS_PANE.getDefaultState()),
-				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.GLASS_PANE, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.GRAY_STAINED_GLASS_PANE.getDefaultState()),
-				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.GLASS_PANE, 0.03F), AlwaysTrueRuleTest.INSTANCE, Blocks.BLACK_STAINED_GLASS_PANE.getDefaultState()),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.LIGHT_GRAY_STAINED_GLASS_PANE, 0.02F), AlwaysTrueRuleTest.INSTANCE, Blocks.YELLOW_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.NORTH, true).with(PaneBlock.SOUTH, true)),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.LIGHT_GRAY_STAINED_GLASS_PANE, 0.12F), AlwaysTrueRuleTest.INSTANCE, Blocks.WHITE_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.NORTH, true).with(PaneBlock.SOUTH, true)),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.LIGHT_GRAY_STAINED_GLASS_PANE, 0.07F), AlwaysTrueRuleTest.INSTANCE, Blocks.GRAY_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.NORTH, true).with(PaneBlock.SOUTH, true)),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.LIGHT_GRAY_STAINED_GLASS_PANE, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.BLACK_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.NORTH, true).with(PaneBlock.SOUTH, true)),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.LIGHT_GRAY_STAINED_GLASS_PANE, 0.91F), AlwaysTrueRuleTest.INSTANCE, Blocks.GLASS_PANE.getDefaultState().with(PaneBlock.NORTH, true).with(PaneBlock.SOUTH, true)),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.GLASS_PANE, 0.02F), AlwaysTrueRuleTest.INSTANCE, Blocks.YELLOW_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.WEST, true).with(PaneBlock.EAST, true)),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.GLASS_PANE, 0.12F), AlwaysTrueRuleTest.INSTANCE, Blocks.WHITE_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.WEST, true).with(PaneBlock.EAST, true)),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.GLASS_PANE, 0.09F), AlwaysTrueRuleTest.INSTANCE, Blocks.LIGHT_GRAY_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.WEST, true).with(PaneBlock.EAST, true)),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.GLASS_PANE, 0.07F), AlwaysTrueRuleTest.INSTANCE, Blocks.GRAY_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.WEST, true).with(PaneBlock.EAST, true)),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.GLASS_PANE, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.BLACK_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.WEST, true).with(PaneBlock.EAST, true)),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.CYAN_STAINED_GLASS, 0.06F), AlwaysTrueRuleTest.INSTANCE, Blocks.LIGHT_GRAY_STAINED_GLASS.getDefaultState()),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.CYAN_STAINED_GLASS, 0.04F), AlwaysTrueRuleTest.INSTANCE, Blocks.GRAY_STAINED_GLASS.getDefaultState()),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.CYAN_STAINED_GLASS, 0.02F), AlwaysTrueRuleTest.INSTANCE, Blocks.BLACK_STAINED_GLASS.getDefaultState()),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.CYAN_STAINED_GLASS, 0.08F), AlwaysTrueRuleTest.INSTANCE, Blocks.BLUE_STAINED_GLASS.getDefaultState()),
 				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.BRICKS, 0.08F), AlwaysTrueRuleTest.INSTANCE, Blocks.PINK_TERRACOTTA.getDefaultState()),
 				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.BRICKS, 0.08F), AlwaysTrueRuleTest.INSTANCE, Blocks.BRICK_STAIRS.getDefaultState()),
 				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.BRICKS, 0.08F), AlwaysTrueRuleTest.INSTANCE, Blocks.BRICK_SLAB.getDefaultState()),
@@ -93,12 +100,22 @@ public class CityStructurePools {
 				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.LARGE_FERN, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
 				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.TALL_GRASS, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
 				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.QUARTZ_BLOCK, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
-				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.QUARTZ_SLAB, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
-				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.QUARTZ_STAIRS, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.CHISELED_QUARTZ_BLOCK, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.SMOOTH_QUARTZ, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.DAYLIGHT_DETECTOR, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
 
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.CHISELED_QUARTZ_BLOCK, 0.04F), AlwaysTrueRuleTest.INSTANCE, Blocks.QUARTZ_SLAB.getDefaultState()),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.CHISELED_QUARTZ_BLOCK, 0.04F), AlwaysTrueRuleTest.INSTANCE, Blocks.QUARTZ_STAIRS.getDefaultState()),
 				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.QUARTZ_BLOCK, 0.04F), AlwaysTrueRuleTest.INSTANCE, Blocks.QUARTZ_SLAB.getDefaultState()),
 				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.QUARTZ_BLOCK, 0.04F), AlwaysTrueRuleTest.INSTANCE, Blocks.QUARTZ_STAIRS.getDefaultState()),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.SMOOTH_QUARTZ, 0.04F), AlwaysTrueRuleTest.INSTANCE, Blocks.QUARTZ_SLAB.getDefaultState()),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.SMOOTH_QUARTZ, 0.04F), AlwaysTrueRuleTest.INSTANCE, Blocks.QUARTZ_STAIRS.getDefaultState()),
 				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.QUARTZ_STAIRS, 0.05F), AlwaysTrueRuleTest.INSTANCE, Blocks.QUARTZ_SLAB.getDefaultState()),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.WHITE_CONCRETE_POWDER, 0.08F), AlwaysTrueRuleTest.INSTANCE, Blocks.LIGHT_GRAY_CONCRETE_POWDER.getDefaultState()),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.WHITE_CONCRETE, 0.08F), AlwaysTrueRuleTest.INSTANCE, Blocks.LIGHT_GRAY_CONCRETE.getDefaultState()),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.LIGHT_BLUE_TERRACOTTA, 0.08F), AlwaysTrueRuleTest.INSTANCE, Blocks.BLUE_TERRACOTTA.getDefaultState()),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.BLUE_TERRACOTTA, 0.08F), AlwaysTrueRuleTest.INSTANCE, Blocks.BLACK_TERRACOTTA.getDefaultState()),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.QUARTZ_PILLAR, 0.08F), AlwaysTrueRuleTest.INSTANCE, Blocks.BONE_BLOCK.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.Y)),
 
 				//place rare cobwebs
 				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.AIR, 0.01F), AlwaysTrueRuleTest.INSTANCE, Blocks.COBWEB.getDefaultState()),
@@ -124,7 +141,18 @@ public class CityStructurePools {
 				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.END_STONE_BRICK_SLAB, 0.02F), AlwaysTrueRuleTest.INSTANCE, Blocks.BRICKS.getDefaultState()),
 				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.END_STONE_BRICK_SLAB, 0.12F), AlwaysTrueRuleTest.INSTANCE, Blocks.JUNGLE_BUTTON.getDefaultState().with(StoneButtonBlock.FACE, WallMountLocation.FLOOR).with(StoneButtonBlock.FACING, Direction.NORTH)),
 				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.END_STONE_BRICK_SLAB, 0.12F), AlwaysTrueRuleTest.INSTANCE, Blocks.JUNGLE_BUTTON.getDefaultState().with(StoneButtonBlock.FACE, WallMountLocation.FLOOR).with(StoneButtonBlock.FACING, Direction.EAST)),
-		new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.END_STONE_BRICK_SLAB, 1F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()) //remove excess remaining end stone brick slab
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.END_STONE_BRICK_SLAB, 1F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),//remove excess remaining end stone brick slab
+
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.END_STONE_BRICK_WALL, 0.18F), AlwaysTrueRuleTest.INSTANCE, Blocks.BIRCH_PRESSURE_PLATE.getDefaultState()),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.END_STONE_BRICK_WALL, 0.01F), AlwaysTrueRuleTest.INSTANCE, Blocks.QUARTZ_STAIRS.getDefaultState().with(StairsBlock.HALF, BlockHalf.BOTTOM).with(StairsBlock.FACING, Direction.NORTH)),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.END_STONE_BRICK_WALL, 0.01F), AlwaysTrueRuleTest.INSTANCE, Blocks.QUARTZ_STAIRS.getDefaultState().with(StairsBlock.HALF, BlockHalf.BOTTOM).with(StairsBlock.FACING, Direction.WEST)),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.END_STONE_BRICK_WALL, 0.01F), AlwaysTrueRuleTest.INSTANCE, Blocks.QUARTZ_STAIRS.getDefaultState().with(StairsBlock.HALF, BlockHalf.BOTTOM).with(StairsBlock.FACING, Direction.SOUTH)),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.END_STONE_BRICK_WALL, 0.01F), AlwaysTrueRuleTest.INSTANCE, Blocks.QUARTZ_STAIRS.getDefaultState().with(StairsBlock.HALF, BlockHalf.BOTTOM).with(StairsBlock.FACING, Direction.EAST)),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.END_STONE_BRICK_WALL, 0.06F), AlwaysTrueRuleTest.INSTANCE, Blocks.QUARTZ_SLAB.getDefaultState()),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.END_STONE_BRICK_WALL, 0.02F), AlwaysTrueRuleTest.INSTANCE, Blocks.CHISELED_QUARTZ_BLOCK.getDefaultState()),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.END_STONE_BRICK_WALL, 0.12F), AlwaysTrueRuleTest.INSTANCE, Blocks.BIRCH_BUTTON.getDefaultState().with(StoneButtonBlock.FACE, WallMountLocation.FLOOR).with(StoneButtonBlock.FACING, Direction.NORTH)),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.END_STONE_BRICK_WALL, 0.12F), AlwaysTrueRuleTest.INSTANCE, Blocks.BIRCH_BUTTON.getDefaultState().with(StoneButtonBlock.FACE, WallMountLocation.FLOOR).with(StoneButtonBlock.FACING, Direction.EAST)),
+				new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.END_STONE_BRICK_WALL, 1F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()) //remove excess remaining end stone brick wall
 		)));
 
 		ImmutableList<StructureProcessor> pathModifier = ImmutableList.of(new RuleStructureProcessor(ImmutableList.of(
@@ -150,7 +178,7 @@ public class CityStructurePools {
 				StructurePool.Projection.TERRAIN_MATCHING));
 
 		StructurePoolBasedGenerator.REGISTRY.add(new StructurePool(new Identifier(OvergrownCities.MOD_ID+":buildings"), new Identifier(OvergrownCities.MOD_ID+":streets/straight/street_terminator"), ImmutableList.of(
-				new Pair<>(new SinglePoolElement(OvergrownCities.MOD_ID+":buildings/testbuilding", destructionRules), 1),
+				new Pair<>(new SinglePoolElement(OvergrownCities.MOD_ID+":buildings/store_1", destructionRules), 1),
 				new Pair<>(new SinglePoolElement(OvergrownCities.MOD_ID+":buildings/residential_1", destructionRules), 1),
 				new Pair<>(new SinglePoolElement(OvergrownCities.MOD_ID+":buildings/business_1", destructionRules), 1)),
 				StructurePool.Projection.RIGID));
@@ -161,6 +189,16 @@ public class CityStructurePools {
 				new Pair<>(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/straight/street3", pathModifier), 1),
 				new Pair<>(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/straight/street4", pathModifier), 1)),
 				StructurePool.Projection.TERRAIN_MATCHING));
+
+		StructurePoolBasedGenerator.REGISTRY.add(new StructurePool(new Identifier(OvergrownCities.MOD_ID+":streets/accessories"), new Identifier(OvergrownCities.MOD_ID+":streets/straight/street_terminator"), ImmutableList.of(
+				new Pair<>(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/accessories/lampost_1", pathModifier), 1),
+				new Pair<>(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/accessories/lampost_2", pathModifier), 1),
+				new Pair<>(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/accessories/lampost_3", pathModifier), 1),
+				new Pair<>(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/accessories/lampost_4", pathModifier), 1),
+				new Pair<>(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/accessories/lampost_5", pathModifier), 1),
+				new Pair<>(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/accessories/lampost_6", pathModifier), 1),
+				new Pair<>(new SinglePoolElement(OvergrownCities.MOD_ID+":streets/accessories/lampost_7", pathModifier), 1)),
+				StructurePool.Projection.RIGID));
 	}
 
 	public static void initialize() {
