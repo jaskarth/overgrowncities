@@ -11,6 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkRandom;
+import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.FeatureConfig;
 import overgrowncities.OvergrownCities;
@@ -21,7 +22,7 @@ import java.util.Random;
 
 public class CityStructurePieces {
     public static void addPieces(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, BlockPos pos, List<StructurePiece> pieces, ChunkRandom random) {
-        StructurePoolBasedGenerator.addPieces(new Identifier(OvergrownCities.MOD_ID+":streets/start"), 1000, CityStructurePieces.Piece::new, chunkGenerator, structureManager, pos, pieces, random);
+        StructurePoolBasedGenerator.addPieces(new Identifier(OvergrownCities.MOD_ID+":streets/start"), 1000, CityStructurePieces.Piece::new, chunkGenerator, structureManager, pos, pieces, random, false, false);
     }
 
     public static class Piece extends PoolStructurePiece {
@@ -37,15 +38,14 @@ public class CityStructurePieces {
         }
 
         @Override
-        public boolean generate(IWorld world, ChunkGenerator<?> generator, Random random, BlockBox box, ChunkPos pos) {
-
-            boolean created = this.poolElement.generate(this.structureManager, world, generator, this.pos, this.rotation, box, random);
-            if(created){
+        public boolean generate(IWorld world, StructureAccessor structureAccessor, ChunkGenerator<?> chunkGenerator, Random random, BlockBox box, ChunkPos pos, BlockPos blockPos) {
+            boolean created = this.poolElement.generate(this.structureManager, world, structureAccessor, chunkGenerator, this.pos, blockPos, this.rotation, box, random, false);
+            if (created) {
                 for(BlockPos boxPosition : BlockPos.iterate(box.minX, this.pos.getY(), box.minZ, box.maxX, this.pos.getY()+32, box.maxZ)){
-                    OgFeatures.BUILDING_DEBRIS.generate(world, generator, random, boxPosition, FeatureConfig.DEFAULT);
+                    OgFeatures.BUILDING_DEBRIS.generate(world, structureAccessor, chunkGenerator, random, boxPosition, FeatureConfig.DEFAULT);
                 }
                 for(BlockPos boxPosition : BlockPos.iterate(box.minX, this.pos.getY(), box.minZ, box.maxX, this.pos.getY()+32, box.maxZ)){
-                    OgFeatures.BUILDING_VEGETATION.generate(world, generator, random, boxPosition, FeatureConfig.DEFAULT);
+                    OgFeatures.BUILDING_VEGETATION.generate(world, structureAccessor, chunkGenerator, random, boxPosition, FeatureConfig.DEFAULT);
                 }
             }
             return created;

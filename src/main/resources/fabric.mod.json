@@ -5,6 +5,9 @@
 	"name": "Overgrown Cities",
 	"description": "Modfest 2020 Submission",
 	"authors": [
+		"SuperCoder79",
+		"TelepathicGrunt",
+		"halotroop2288"
 	],
 	"contact": {
 		"homepage": "https://modfest.github.io/"
@@ -26,7 +29,7 @@
 	"depends": {
 		"fabricloader": ">=0.7.8",
 		"fabric": "*",
-		"minecraft": "1.15.2"
+		"minecraft": ">=1.16-20.w.18"
 	},
 	"suggests": {
 		"modmenu": ">=1.10"

@@ -8,6 +8,7 @@ import net.minecraft.block.enums.WallMountLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -24,12 +25,12 @@ public class BuildingDebrisFeature extends Feature<DefaultFeatureConfig> {
     /**
      * Not for regular worldgen. This is to be called for every block position in a structure's pieces generate method
      */
-    @Override
-    public boolean generate(IWorld world, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos position, DefaultFeatureConfig config) {
-        BlockState currentBlock = world.getBlockState(position);
+	@Override
+	public boolean generate(IWorld world, StructureAccessor accessor, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+        BlockState currentBlock = world.getBlockState(pos);
 
         if(random.nextFloat() < 0.05f && currentBlock.getMaterial() == Material.AIR){
-            BlockState belowBlock = world.getBlockState(position.down());
+            BlockState belowBlock = world.getBlockState(pos.down());
             if(( belowBlock.isOpaque() &&
                     !(belowBlock.getBlock() instanceof StairsBlock ||
                       belowBlock.getBlock() instanceof SlabBlock ||
@@ -39,23 +40,27 @@ public class BuildingDebrisFeature extends Feature<DefaultFeatureConfig> {
 
                 float chance = random.nextFloat();
                 if(chance < 0.40f){
-                    world.setBlockState(position, Blocks.STONE_BUTTON.getDefaultState().with(StoneButtonBlock.FACING, random.nextBoolean() ? Direction.WEST : Direction.NORTH).with(StoneButtonBlock.FACE, WallMountLocation.FLOOR), 2);
+                    world.setBlockState(pos, Blocks.STONE_BUTTON.getDefaultState()
+                    		.with(StoneButtonBlock.FACING, random.nextBoolean() ? Direction.WEST : Direction.NORTH)
+                    		.with(StoneButtonBlock.FACE, WallMountLocation.FLOOR), 2);
                 }
                 else if(chance < 0.60f){
-                    world.setBlockState(position, Blocks.STONE_PRESSURE_PLATE.getDefaultState(), 2);
+                    world.setBlockState(pos, Blocks.STONE_PRESSURE_PLATE.getDefaultState(), 2);
                 }
                 else if(chance < 0.80f){
-                    world.setBlockState(position, Blocks.ANDESITE_SLAB.getDefaultState().with(SlabBlock.TYPE, SlabType.BOTTOM), 2);
+                    world.setBlockState(pos, Blocks.ANDESITE_SLAB.getDefaultState()
+                    		.with(SlabBlock.TYPE, SlabType.BOTTOM), 2);
                 }
                 else if(chance < 0.90f){
-                    world.setBlockState(position, Blocks.ANDESITE_STAIRS.getDefaultState().with(StairsBlock.FACING, Direction.fromHorizontal(random.nextInt(4))), 2);
+                    world.setBlockState(pos, Blocks.ANDESITE_STAIRS.getDefaultState()
+                    		.with(StairsBlock.FACING, Direction.fromHorizontal(random.nextInt(4))), 2);
                 }
                 else{
-                    world.setBlockState(position, Blocks.ANDESITE.getDefaultState(), 2);
+                    world.setBlockState(pos, Blocks.ANDESITE.getDefaultState(), 2);
                 }
             }
         }
 
         return true;
-    }
+	}
 }

@@ -10,6 +10,7 @@ import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.FeatureConfig;
 import overgrowncities.OvergrownCities;
@@ -91,7 +92,7 @@ public class WarehouseGenerator {
          Structure structure = manager.getStructureOrBlank(this.template);
          StructurePlacementData structurePlacementData = (new StructurePlacementData())
                  .setRotation(this.rotation)
-                 .setMirrored(BlockMirror.NONE)
+                 .setMirror(BlockMirror.NONE)
                  .setPosition((BlockPos) WarehouseGenerator.PIECES_OFFSET.get(this.template))
                  .addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS);
 
@@ -115,28 +116,29 @@ public class WarehouseGenerator {
 //            }
 //         }
       }
-
+      
       @Override
-      public boolean generate(IWorld world, ChunkGenerator<?> generator, Random random, BlockBox box, ChunkPos pos) {
-         StructurePlacementData structurePlacementData = (new StructurePlacementData()).setRotation(this.rotation).setMirrored(BlockMirror.NONE).setPosition((BlockPos) WarehouseGenerator.PIECES_OFFSET.get(this.template)).addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS);
-         BlockPos blockPos = (BlockPos) WarehouseGenerator.COUNTER_OFFSET.get(this.template);
-         this.pos.add(Structure.method_15171(structurePlacementData, new BlockPos(-blockPos.getX(), 0, -blockPos.getZ())));
+    public boolean generate(IWorld world, StructureAccessor structureAccessor, ChunkGenerator<?> chunkGenerator, Random random, BlockBox boundingBox, ChunkPos chunkPos, BlockPos blockPos) {
+          StructurePlacementData structurePlacementData = (new StructurePlacementData()).setRotation(this.rotation).setMirror(BlockMirror.NONE).setPosition((BlockPos) WarehouseGenerator.PIECES_OFFSET.get(this.template)).addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS);
+          BlockPos blockPos1 = (BlockPos) WarehouseGenerator.COUNTER_OFFSET.get(this.template);
+          this.pos.add(Structure.transform(structurePlacementData, new BlockPos(-blockPos1.getX(), 0, -blockPos1.getZ())));
 
-         boolean created = super.generate(world, generator, random, box, pos);
-         if(created){
-            for(BlockPos boxPosition : BlockPos.iterate(box.minX, this.pos.getY(), box.minZ, box.maxX, this.pos.getY()+17, box.maxZ)){
-               OgFeatures.BUILDING_DESTRUCTION.generate(world, generator, random, boxPosition, FeatureConfig.DEFAULT);
-            }
+          boolean created = super.generate(world, structureAccessor, chunkGenerator, random, boundingBox, chunkPos, pos);
+          if(created) {
+             for(BlockPos boxPosition : BlockPos.iterate(boundingBox.minX, this.pos.getY(), boundingBox.minZ, boundingBox.maxX, this.pos.getY()+17, boundingBox.maxZ)){
+                OgFeatures.BUILDING_DESTRUCTION.generate(world, structureAccessor, chunkGenerator, random, boxPosition, FeatureConfig.DEFAULT);
+             }
 
-            for(BlockPos boxPosition : BlockPos.iterate(box.minX, this.pos.getY(), box.minZ, box.maxX, this.pos.getY()+17, box.maxZ)){
-               OgFeatures.BUILDING_DEBRIS.generate(world, generator, random, boxPosition, FeatureConfig.DEFAULT);
-            }
+             for(BlockPos boxPosition : BlockPos.iterate(boundingBox.minX, this.pos.getY(), boundingBox.minZ, boundingBox.maxX, this.pos.getY()+17, boundingBox.maxZ)){
+                OgFeatures.BUILDING_DEBRIS.generate(world, structureAccessor, chunkGenerator, random, boxPosition, FeatureConfig.DEFAULT);
+             }
 
-            for(BlockPos boxPosition : BlockPos.iterate(box.minX, this.pos.getY(), box.minZ, box.maxX, this.pos.getY()+17, box.maxZ)){
-               OgFeatures.BUILDING_VEGETATION.generate(world, generator, random, boxPosition, FeatureConfig.DEFAULT);
-            }
-         }
-         return created;
-      }
+             for(BlockPos boxPosition : BlockPos.iterate(boundingBox.minX, this.pos.getY(), boundingBox.minZ, boundingBox.maxX, this.pos.getY()+17, boundingBox.maxZ)){
+                OgFeatures.BUILDING_VEGETATION.generate(world, structureAccessor, chunkGenerator, random, boxPosition, FeatureConfig.DEFAULT);
+             }
+          }
+          return created;
+       }
+
    }
 }

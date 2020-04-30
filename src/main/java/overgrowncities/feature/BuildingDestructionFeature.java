@@ -5,8 +5,8 @@ import net.minecraft.block.*;
 import net.minecraft.state.property.Property;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.world.Heightmap;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -14,7 +14,6 @@ import net.minecraft.world.gen.feature.Feature;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 import java.util.Random;
 import java.util.function.Function;
 
@@ -44,40 +43,6 @@ public class BuildingDestructionFeature extends Feature<DefaultFeatureConfig> {
         BLOCK_TRANSFORM_MAP.put(Blocks.STONE_BUTTON, Blocks.AIR);
     }
 
-    /**
-     * Not for regular worldgen. This is to be called for every block position in a structure's pieces generate method
-     */
-    @Override
-    public boolean generate(IWorld world, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos position, DefaultFeatureConfig config) {
-        BlockState currentBlock = world.getBlockState(position);
-
-        if(BLOCK_TRANSFORM_MAP.containsKey(currentBlock.getBlock())) {
-            Block aboveBlock = world.getBlockState(position.up()).getBlock();
-
-            if (random.nextFloat() < 0.05f &&
-                    BLOCK_TRANSFORM_MAP.containsKey(world.getBlockState(position.up()).getBlock()) &&
-                    aboveBlock != Blocks.SCAFFOLDING) {
-
-                world.setBlockState(position, Blocks.AIR.getDefaultState(), 2);
-                removeAttachedBlocks(world, position);
-            }
-            else if (random.nextFloat() < 0.15f) {
-                BlockState newBlock = BLOCK_TRANSFORM_MAP.get(currentBlock.getBlock()).getDefaultState();
-                if (newBlock != Blocks.AIR.getDefaultState()) {
-                    for (Property<?> property : currentBlock.getProperties()) {
-                        newBlock = syncBlockProperties(newBlock, currentBlock, property);
-                    }
-
-                    world.setBlockState(position, newBlock, 2);
-                } else {
-                    removeAttachedBlocks(world, position);
-                }
-            }
-        }
-
-        return true;
-    }
-
     private static <T extends Comparable<T>> BlockState syncBlockProperties(BlockState newBlock, BlockState oldBlock, Property<T> property){
         return newBlock.with((Property<T>)property, (T)oldBlock.get(property));
     }
@@ -95,4 +60,38 @@ public class BuildingDestructionFeature extends Feature<DefaultFeatureConfig> {
             }
         }
     }
+
+    /**
+     * Not for regular worldgen. This is to be called for every block position in a structure's pieces generate method
+     */
+	@Override
+	public boolean generate(IWorld world, StructureAccessor accessor, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+        BlockState currentBlock = world.getBlockState(pos);
+
+        if(BLOCK_TRANSFORM_MAP.containsKey(currentBlock.getBlock())) {
+            Block aboveBlock = world.getBlockState(pos.up()).getBlock();
+
+            if (random.nextFloat() < 0.05f &&
+                    BLOCK_TRANSFORM_MAP.containsKey(world.getBlockState(pos.up()).getBlock()) &&
+                    aboveBlock != Blocks.SCAFFOLDING) {
+
+                world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+                removeAttachedBlocks(world, pos);
+            }
+            else if (random.nextFloat() < 0.15f) {
+                BlockState newBlock = BLOCK_TRANSFORM_MAP.get(currentBlock.getBlock()).getDefaultState();
+                if (newBlock != Blocks.AIR.getDefaultState()) {
+                    for (Property<?> property : currentBlock.getProperties()) {
+                        newBlock = syncBlockProperties(newBlock, currentBlock, property);
+                    }
+
+                    world.setBlockState(pos, newBlock, 2);
+                } else {
+                    removeAttachedBlocks(world, pos);
+                }
+            }
+        }
+
+        return true;
+	}
 }

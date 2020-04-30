@@ -20,7 +20,7 @@ public class OvergrowthDimension extends Dimension {
     @Override
     public ChunkGenerator<?> createChunkGenerator() {
         OverworldChunkGeneratorConfig config = new OverworldChunkGeneratorConfig();
-        VanillaLayeredBiomeSourceConfig biomeConfig = new VanillaLayeredBiomeSourceConfig(world.getLevelProperties());
+        VanillaLayeredBiomeSourceConfig biomeConfig = new VanillaLayeredBiomeSourceConfig(world.getLevelProperties().getSeed());
         return new OvergrowthChunkGenerator(this.world, new OvergrowthBiomeSource(biomeConfig), config);
     }
 
@@ -45,20 +45,7 @@ public class OvergrowthDimension extends Dimension {
     public boolean hasVisibleSky() {
         return true;
     }
-
-    @Override
-    public Vec3d getFogColor(float skyAngle, float tickDelta) {
-//        float f = MathHelper.cos(skyAngle * 6.2831855F) * 2.0F + 0.5F;
-//        f = MathHelper.clamp(f, 0.0F, 1.0F);
-//        float g = 0.7529412F;
-//        float h = 0.84705883F;
-//        float i = 1.0F;
-//        g *= f * 0.94F + 0.06F;
-//        h *= f * 0.94F + 0.06F;
-//        i *= f * 0.91F + 0.09F;
-        return new Vec3d(199/256f, 222/256f, 235/256f);
-    }
-
+    
     @Override
     public boolean canPlayersSleep() {
         return true;
@@ -73,4 +60,17 @@ public class OvergrowthDimension extends Dimension {
     public DimensionType getType() {
         return OvergrownCities.OVERGROWTH;
     }
+
+	@Override
+	public Vec3d modifyFogColor(Vec3d vec3d, float tickDelta) {
+//      float f = MathHelper.cos(skyAngle * 6.2831855F) * 2.0F + 0.5F;
+//      f = MathHelper.clamp(f, 0.0F, 1.0F);
+//      float g = 0.7529412F;
+//      float h = 0.84705883F;
+//      float i = 1.0F;
+//      g *= f * 0.94F + 0.06F;
+//      h *= f * 0.94F + 0.06F;
+//      i *= f * 0.91F + 0.09F;
+        return new Vec3d(199/256f, 222/256f, 235/256f);
+	}
 }

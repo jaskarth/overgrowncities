@@ -3,6 +3,7 @@ package overgrowncities.biome;
 import net.minecraft.entity.EntityCategory;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.decorator.*;
@@ -20,8 +21,11 @@ public class OvergrowthWildernessBiome extends OvergrowthBiome {
                 .scale(0.1F)
                 .temperature(0.8F)
                 .downfall(0.4F)
-                .waterColor(0x236e37)
-                .waterFogColor(0x236e37)
+                .effects(new BiomeEffects.Builder()
+                		.fogColor(0x236e37)
+                		.waterFogColor(0x236e37)
+                		.waterColor(0x236e37)
+                		.build())
                 .parent(null), 5);
 
         //TODO: remove after testing
@@ -41,10 +45,10 @@ public class OvergrowthWildernessBiome extends OvergrowthBiome {
                         .createDecoratedFeature(Decorator.NOISE_HEIGHTMAP_DOUBLE
                                 .configure(new NoiseHeightmapDecoratorConfig(-0.8D, 10, 20))));
 
-        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION,
-                Feature.NORMAL_TREE.configure(OVERGROWN_TREE)
-                        .createDecoratedFeature(Decorator.COUNT_EXTRA_HEIGHTMAP
-                                .configure(new CountExtraChanceDecoratorConfig(16, 0.5F, 1))));
+//        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION,
+//                Feature.TREE.configure(OVERGROWN_TREE)
+//                        .createDecoratedFeature(Decorator.COUNT_EXTRA_HEIGHTMAP
+//                                .configure(new CountExtraChanceDecoratorConfig(16, 0.5F, 1))));
 
         this.addSpawn(EntityCategory.CREATURE, new Biome.SpawnEntry(EntityType.SHEEP, 12, 4, 4));
         this.addSpawn(EntityCategory.CREATURE, new Biome.SpawnEntry(EntityType.PIG, 10, 4, 4));

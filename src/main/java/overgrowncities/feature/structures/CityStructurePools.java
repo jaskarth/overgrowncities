@@ -201,6 +201,6 @@ public class CityStructurePools {
 				StructurePool.Projection.RIGID));
 	}
 
-	public static void initialize() {
+	public static void init() {
 	}
 }

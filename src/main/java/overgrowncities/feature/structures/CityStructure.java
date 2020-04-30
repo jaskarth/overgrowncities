@@ -33,7 +33,7 @@ public class CityStructure extends StructureFeature<DefaultFeatureConfig> {
         int validXChunk = q / maxSeperation;
         int validZChunk = r / maxSeperation;
 
-        ((ChunkRandom)random).setStructureSeed(chunkGenerator.getSeed(), validXChunk, validZChunk, 43114311);
+        ((ChunkRandom)random).setSeed(chunkGenerator.getSeed() * 43114311);
         validXChunk *= maxSeperation;
         validZChunk *= maxSeperation;
         validXChunk += random.nextInt(maxSeperation - minSeperation);
@@ -65,7 +65,7 @@ public class CityStructure extends StructureFeature<DefaultFeatureConfig> {
             super(structureFeature, chunkX, chunkZ, blockBox, references, seed);
         }
 
-        public void initialize(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, int x, int z, Biome biome) {
+        public void init(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, int x, int z, Biome biome) {
             BlockPos blockPos = new BlockPos(x * 16, 0, z * 16);
             CityStructurePieces.addPieces(chunkGenerator, structureManager, blockPos, this.children, this.random);
             this.setBoundingBoxFromChildren();

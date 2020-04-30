@@ -18,7 +18,7 @@ public class OvergrowthBiomeSource extends BiomeSource {
                 OvergrownBiomes.SUBURBS,
                 OvergrownBiomes.WILDERNESS
         ));
-        this.biomeSampler = OvergrowthBiomeLayers.build(config.getSeed(), config.getGeneratorType(), config.getGeneratorSettings());
+        this.biomeSampler = OvergrowthBiomeLayers.build(config.getSeed(), config.getGeneratorType(), config.getGeneratorConfig());
     }
 
     @Override

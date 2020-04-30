@@ -1,11 +1,10 @@
 package overgrowncities;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.dimension.v1.EntityPlacer;
 import net.fabricmc.fabric.api.dimension.v1.FabricDimensionType;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
 import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.item.BlockItem;
@@ -49,7 +48,7 @@ public class OvergrownCities implements ModInitializer {
 	public void onInitialize() {
         FindBiomeCommand.register();
 
-		PORTAL = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "portal"), new OvergrowthPortal(FabricBlockSettings.of(Material.STONE).hardness(1.5f).resistance(3f).build()));
+		PORTAL = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "portal"), new OvergrowthPortal(FabricBlockSettings.of(Material.STONE).hardness(1.5f).resistance(3f)));
 		Registry.register(Registry.ITEM, new Identifier(MOD_ID, "portal"), new BlockItem(PORTAL, new Item.Settings().group(ItemGroup.DECORATIONS)));
 
 		OvergrownFeatures.init();

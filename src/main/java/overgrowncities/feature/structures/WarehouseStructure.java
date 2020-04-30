@@ -36,7 +36,7 @@ public class WarehouseStructure extends StructureFeature<DefaultFeatureConfig> {
         int validXChunk = q / maxSeperation;
         int validZChunk = r / maxSeperation;
 
-        ((ChunkRandom)random).setStructureSeed(chunkGenerator.getSeed(), validXChunk, validZChunk, 43114322);
+        ((ChunkRandom)random).setSeed(chunkGenerator.getSeed() * 43114322);
         validXChunk *= maxSeperation;
         validZChunk *= maxSeperation;
         validXChunk += random.nextInt(maxSeperation - minSeperation);
@@ -68,7 +68,7 @@ public class WarehouseStructure extends StructureFeature<DefaultFeatureConfig> {
             super(structureFeature, chunkX, chunkZ, blockBox, references, seed);
         }
 
-        public void initialize(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, int x, int z, Biome biome) {
+        public void init(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, int x, int z, Biome biome) {
             BlockPos blockPos = new BlockPos(x * 16, chunkGenerator.getHeightOnGround(x*16+15, z*16+15, Heightmap.Type.WORLD_SURFACE_WG), z * 16);
             BlockRotation blockRotation = BlockRotation.values()[this.random.nextInt(BlockRotation.values().length)];
             WarehouseGenerator.addPieces(structureManager, blockPos, blockRotation, this.children, this.random);

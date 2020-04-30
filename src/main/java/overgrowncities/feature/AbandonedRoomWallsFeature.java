@@ -6,6 +6,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -19,8 +20,27 @@ public class AbandonedRoomWallsFeature extends Feature<DefaultFeatureConfig> {
         super(configDeserializer);
     }
 
-    @Override
-    public boolean generate(IWorld world, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+    private static boolean isStoneBrick(IWorld world, BlockPos pos) {
+        BlockState state = world.getBlockState(pos);
+        return state == Blocks.STONE_BRICKS.getDefaultState() || state == Blocks.CRACKED_STONE_BRICKS.getDefaultState() || state == Blocks.MOSSY_STONE_BRICKS.getDefaultState();
+    }
+
+    private static void placeStoneBrick(IWorld world, Random random, BlockPos pos) {
+        switch (random.nextInt(3)) {
+            case 0:
+                world.setBlockState(pos, Blocks.STONE_BRICKS.getDefaultState(), 0);
+                break;
+            case 1:
+                world.setBlockState(pos, Blocks.CRACKED_STONE_BRICKS.getDefaultState(), 0);
+                break;
+            case 2:
+                world.setBlockState(pos, Blocks.MOSSY_STONE_BRICKS.getDefaultState(), 0);
+                break;
+        }
+    }
+
+	@Override
+	public boolean generate(IWorld world, StructureAccessor accessor, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
         boolean isGround = false;
         for (int x = -15; x < 32; x++) {
             for (int z = -15; z < 32; z++) {
@@ -63,24 +83,5 @@ public class AbandonedRoomWallsFeature extends Feature<DefaultFeatureConfig> {
         }
 
         return true;
-    }
-
-    private static boolean isStoneBrick(IWorld world, BlockPos pos) {
-        BlockState state = world.getBlockState(pos);
-        return state == Blocks.STONE_BRICKS.getDefaultState() || state == Blocks.CRACKED_STONE_BRICKS.getDefaultState() || state == Blocks.MOSSY_STONE_BRICKS.getDefaultState();
-    }
-
-    private static void placeStoneBrick(IWorld world, Random random, BlockPos pos) {
-        switch (random.nextInt(3)) {
-            case 0:
-                world.setBlockState(pos, Blocks.STONE_BRICKS.getDefaultState(), 0);
-                break;
-            case 1:
-                world.setBlockState(pos, Blocks.CRACKED_STONE_BRICKS.getDefaultState(), 0);
-                break;
-            case 2:
-                world.setBlockState(pos, Blocks.MOSSY_STONE_BRICKS.getDefaultState(), 0);
-                break;
-        }
-    }
+	}
 }

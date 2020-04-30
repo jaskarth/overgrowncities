@@ -1,26 +1,20 @@
 package overgrowncities.biome;
 
-import com.google.common.collect.ImmutableList;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.feature.BranchedTreeFeatureConfig;
-import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
-import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
-import overgrowncities.treedecorator.ManyVinesTreeDecorator;
 
 public class OvergrowthBiome extends Biome {
-    static BranchedTreeFeatureConfig OVERGROWN_TREE = new BranchedTreeFeatureConfig.Builder(
-            new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState()),
-            new SimpleBlockStateProvider(Blocks.OAK_LEAVES.getDefaultState()),
-            new BlobFoliagePlacer(3, 0))
-            .baseHeight(8)
-            .heightRandA(5)
-            .foliageHeight(3)
-            .maxWaterDepth(4)
-            .treeDecorators(ImmutableList.of(new ManyVinesTreeDecorator()))
-            .build();
+//    static TreeFeatureConfig OVERGROWN_TREE = new BranchedTreeFeatureConfig.Builder(
+//            new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState()),
+//            new SimpleBlockStateProvider(Blocks.OAK_LEAVES.getDefaultState()),
+//            new BlobFoliagePlacer(3, 0, 0, 0, 0))
+//            .baseHeight(8)
+//            .heightRandA(5)
+//            .foliageHeight(3)
+//            .maxWaterDepth(4)
+//            .treeDecorators(ImmutableList.of(new ManyVinesTreeDecorator()))
+//            .build();
 
     //The modification coefficient for the perlin height addition
     private double heightMod;

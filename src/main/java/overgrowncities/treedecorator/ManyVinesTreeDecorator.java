@@ -21,26 +21,28 @@ public class ManyVinesTreeDecorator extends TreeDecorator {
         super(null);
     }
 
+    // FIXME: method_27370 = isAir, this is not yet mapped.
+    
     public void generate(IWorld world, Random random, List<BlockPos> logPositions, List<BlockPos> leavesPositions, Set<BlockPos> set, BlockBox box) {
         leavesPositions.forEach((blockPos) -> {
             BlockPos blockPos5;
             blockPos5 = blockPos.west();
-            if (AbstractTreeFeature.isAir(world, blockPos5)) {
+            if (AbstractTreeFeature.method_27370(world, blockPos5)) {
                 this.generateVines(world, blockPos5, VineBlock.EAST, set, box);
             }
 
             blockPos5 = blockPos.east();
-            if (AbstractTreeFeature.isAir(world, blockPos5)) {
+            if (AbstractTreeFeature.method_27370(world, blockPos5)) {
                 this.generateVines(world, blockPos5, VineBlock.WEST, set, box);
             }
 
             blockPos5 = blockPos.north();
-            if (AbstractTreeFeature.isAir(world, blockPos5)) {
+            if (AbstractTreeFeature.method_27370(world, blockPos5)) {
                 this.generateVines(world, blockPos5, VineBlock.SOUTH, set, box);
             }
 
             blockPos5 = blockPos.south();
-            if (AbstractTreeFeature.isAir(world, blockPos5)) {
+            if (AbstractTreeFeature.method_27370(world, blockPos5)) {
                 this.generateVines(world, blockPos5, VineBlock.NORTH, set, box);
             }
         });
@@ -48,19 +50,19 @@ public class ManyVinesTreeDecorator extends TreeDecorator {
         logPositions.forEach((blockPos) -> {
             BlockPos blockPos5;
             blockPos5 = blockPos.west();
-            if (AbstractTreeFeature.isAir(world, blockPos5)) {
+            if (AbstractTreeFeature.method_27370(world, blockPos5)) {
                 this.placeVine(world, blockPos5, VineBlock.EAST, set, box);
             }
             blockPos5 = blockPos.east();
-            if (AbstractTreeFeature.isAir(world, blockPos5)) {
+            if (AbstractTreeFeature.method_27370(world, blockPos5)) {
                 this.placeVine(world, blockPos5, VineBlock.WEST, set, box);
             }
             blockPos5 = blockPos.north();
-            if (AbstractTreeFeature.isAir(world, blockPos5)) {
+            if (AbstractTreeFeature.method_27370(world, blockPos5)) {
                 this.placeVine(world, blockPos5, VineBlock.SOUTH, set, box);
             }
             blockPos5 = blockPos.south();
-            if (AbstractTreeFeature.isAir(world, blockPos5)) {
+            if (AbstractTreeFeature.method_27370(world, blockPos5)) {
                 this.placeVine(world, blockPos5, VineBlock.NORTH, set, box);
             }
         });
@@ -70,7 +72,7 @@ public class ManyVinesTreeDecorator extends TreeDecorator {
         this.placeVine(world, blockPos, booleanProperty, set, blockBox);
         int i = 5 + random.nextInt(4);
 
-        for(blockPos = blockPos.down(); AbstractTreeFeature.isAir(world, blockPos) && i > 0; --i) {
+        for(blockPos = blockPos.down(); AbstractTreeFeature.method_27370(world, blockPos) && i > 0; --i) {
             this.placeVine(world, blockPos, booleanProperty, set, blockBox);
             blockPos = blockPos.down();
         }

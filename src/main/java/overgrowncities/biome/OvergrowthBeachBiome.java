@@ -1,5 +1,6 @@
 package overgrowncities.biome;
 
+import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 import overgrowncities.feature.OgFeatures;
@@ -14,8 +15,11 @@ public class OvergrowthBeachBiome extends OvergrowthBiome {
                 .scale(0.1F)
                 .temperature(0.8F)
                 .downfall(0.4F)
-                .waterColor(0x236e37)
-                .waterFogColor(0x236e37)
+                .effects(new BiomeEffects.Builder()
+                		.waterColor(0x236e37)
+                		.fogColor(0x236e37)
+                		.waterFogColor(0x236e37)
+                		.build())
                 .parent(null), 0.3);
 
         OgFeatures.addFeaturesOfStructures(this);

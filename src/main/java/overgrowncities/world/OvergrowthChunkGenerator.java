@@ -1,5 +1,8 @@
 package overgrowncities.world;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.noise.OctavePerlinNoiseSampler;
@@ -24,7 +27,10 @@ public class OvergrowthChunkGenerator extends SurfaceChunkGenerator<OverworldChu
 
     public OvergrowthChunkGenerator(IWorld world, BiomeSource biomeSource, OverworldChunkGeneratorConfig config) {
         super(world, biomeSource, 4, 8, 256, config, true);
-        this.depthSampler = new OctavePerlinNoiseSampler(this.random, 15, 0);
+        List<Integer> octaves = new ArrayList<Integer>();
+        octaves.add(15);
+        octaves.add(0);
+        this.depthSampler = new OctavePerlinNoiseSampler(this.random, octaves);
     }
 
     @Override

@@ -1,11 +1,8 @@
 package overgrowncities.biome;
 
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.decorator.CountExtraChanceDecoratorConfig;
-import net.minecraft.world.gen.decorator.Decorator;
-import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 import overgrowncities.feature.OgFeatures;
 
@@ -19,8 +16,12 @@ public class OvergrowthLakeBiome extends OvergrowthBiome {
                 .scale(0.01F)
                 .temperature(0.8F)
                 .downfall(0.4F)
-                .waterColor(0x236e37)
-                .waterFogColor(0x236e37)
+                .temperature(1F)
+                .effects(new BiomeEffects.Builder()
+                		.waterColor(0x236e37)
+                		.waterFogColor(0x236e37)
+                		.fogColor(0x236e37)
+                		.build())
                 .parent(null), 0.3);
 
         OgFeatures.addFeaturesOfStructures(this);
@@ -32,9 +33,9 @@ public class OvergrowthLakeBiome extends OvergrowthBiome {
         DefaultBiomeFeatures.addSprings(this);
         DefaultBiomeFeatures.addFrozenTopLayer(this);
 
-        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION,
-                Feature.NORMAL_TREE.configure(OVERGROWN_TREE)
-                        .createDecoratedFeature(Decorator.COUNT_EXTRA_HEIGHTMAP
-                                .configure(new CountExtraChanceDecoratorConfig(6, 0.5F, 1))));
+//        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION,
+//                Feature.TREE.configure(OVERGROWN_TREE)
+//                        .createDecoratedFeature(Decorator.COUNT_EXTRA_HEIGHTMAP
+//                                .configure(new CountExtraChanceDecoratorConfig(6, 0.5F, 1))));
     }
 }

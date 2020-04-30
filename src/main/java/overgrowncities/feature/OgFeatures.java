@@ -25,8 +25,8 @@ public class OgFeatures {
     public static void setupFeatures() {
         Feature.STRUCTURES.put(OvergrownCities.MOD_ID+":city_structure", CITY_STRUCTURE);
         Feature.STRUCTURES.put(OvergrownCities.MOD_ID+":abandoned_warehouse", WAREHOUSE_STRUCTURE);
-        CityStructurePools.initialize();
-        PlainsVillageData.initialize();
+        CityStructurePools.init();
+        PlainsVillageData.init();
     }
 
     /**

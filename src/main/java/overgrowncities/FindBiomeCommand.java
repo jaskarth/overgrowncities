@@ -2,7 +2,8 @@ package overgrowncities;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.fabricmc.fabric.api.registry.CommandRegistry;
+
+import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.MessageType;
 import net.minecraft.server.command.CommandManager;
@@ -31,7 +32,7 @@ public class FindBiomeCommand {
     private static int timeout = 180_000;
 
     public static void register() {
-        CommandRegistry.INSTANCE.register(false, dispatcher -> {
+    	CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
             LiteralArgumentBuilder<ServerCommandSource> builder = CommandManager.literal("findbiome").requires(source ->
                     source.hasPermissionLevel(2));
             Registry.BIOME.stream().forEach(biome -> builder.then(CommandManager.literal(Objects.requireNonNull(Registry.BIOME.getId(biome)).toString())
@@ -53,15 +54,15 @@ public class FindBiomeCommand {
 
             if (biomePos == null) {
                 source.sendFeedback(new TranslatableText(source.getMinecraftServer() instanceof DedicatedServer ? "optimizeWorld.stage.failed" : "commands.terraform.findbiome.fail",
-                        biomeName, timeout / 1000).setStyle(new Style().setColor(Formatting.RED)), true);
+                        biomeName, timeout / 1000).setStyle(Style.EMPTY.withColor(Formatting.RED)), true);
                 return;
             }
             BlockPos finalBiomePos = biomePos;
             source.getMinecraftServer().execute(() -> {
                 int distance = MathHelper.floor(getDistance(executorPos.getX(), executorPos.getZ(), finalBiomePos.getX(), finalBiomePos.getZ()));
                 Text coordinates = Texts.bracketed(new TranslatableText("chat.coordinates", finalBiomePos.getX(), "~",
-                        finalBiomePos.getZ())).setStyle(new Style().setColor(Formatting.GREEN)
-                        .setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/tp @s " + finalBiomePos.getX() + " ~ " + finalBiomePos.getZ()))
+                        finalBiomePos.getZ())).setStyle(Style.EMPTY.withColor(Formatting.GREEN)
+                        .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/tp @s " + finalBiomePos.getX() + " ~ " + finalBiomePos.getZ()))
                         .setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableText("chat.coordinates.tooltip"))));
                 source.sendFeedback(new TranslatableText("commands.locate.success", biomeName, coordinates, distance), true);
             });
@@ -75,7 +76,7 @@ public class FindBiomeCommand {
         double x, z;
         double dist = 0;
         long start = System.currentTimeMillis();
-        BlockPos.PooledMutable pos = BlockPos.PooledMutable.get();
+        BlockPos.Mutable pos = new BlockPos.Mutable();
         int previous = 0;
         int i = 0;
         for (int n = 0; dist < Integer.MAX_VALUE; ++n) {
@@ -90,16 +91,16 @@ public class FindBiomeCommand {
                 previous = 0;
             String dots = (previous == 0 ? "." : previous == 1 ? ".." : "...");
             if (source.getEntity() instanceof PlayerEntity && !(source.getMinecraftServer() instanceof DedicatedServer))
-                source.getPlayer().sendChatMessage(new TranslatableText("commands.terraform.findbiome.scanning", dots), MessageType.GAME_INFO);
+                source.getPlayer().sendMessage(new TranslatableText("commands.terraform.findbiome.scanning", dots), MessageType.GAME_INFO);
             if (i == 9216) {
                 previous++;
                 i = 0;
             }
             i++;
             if (world.getBiome(pos).equals(biomeToFind)) {
-                pos.close();
+//                pos.close();
                 if (source.getEntity() instanceof PlayerEntity && !(source.getMinecraftServer() instanceof DedicatedServer))
-                    source.getPlayer().sendChatMessage(new TranslatableText("commands.terraform.findbiome.found", new TranslatableText(biomeToFind.getTranslationKey()), (System.currentTimeMillis() - start) / 1000), MessageType.GAME_INFO);
+                    source.getPlayer().sendMessage(new TranslatableText("commands.terraform.findbiome.found", new TranslatableText(biomeToFind.getTranslationKey()), (System.currentTimeMillis() - start) / 1000), MessageType.GAME_INFO);
                 return new BlockPos((int) x, 0, (int) z);
             }
         }
