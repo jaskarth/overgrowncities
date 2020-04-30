@@ -28,7 +28,7 @@ public class OvergrowthWildernessBiome extends OvergrowthBiome {
                 		.build())
                 .parent(null), 5);
 
-        //TODO: remove after testing
+        // TODO: remove after testing
 //        this.addStructureFeature(OgFeatures.CITY_STRUCTURE.configure(FeatureConfig.DEFAULT));
 
         OgFeatures.addFeaturesOfStructures(this);
@@ -45,10 +45,10 @@ public class OvergrowthWildernessBiome extends OvergrowthBiome {
                         .createDecoratedFeature(Decorator.NOISE_HEIGHTMAP_DOUBLE
                                 .configure(new NoiseHeightmapDecoratorConfig(-0.8D, 10, 20))));
 
-//        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION,
-//                Feature.TREE.configure(OVERGROWN_TREE)
-//                        .createDecoratedFeature(Decorator.COUNT_EXTRA_HEIGHTMAP
-//                                .configure(new CountExtraChanceDecoratorConfig(16, 0.5F, 1))));
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION,
+                Feature.TREE.configure(OVERGROWN_TREE)
+                        .createDecoratedFeature(Decorator.COUNT_EXTRA_HEIGHTMAP
+                                .configure(new CountExtraChanceDecoratorConfig(16, 0.5F, 1))));
 
         this.addSpawn(EntityCategory.CREATURE, new Biome.SpawnEntry(EntityType.SHEEP, 12, 4, 4));
         this.addSpawn(EntityCategory.CREATURE, new Biome.SpawnEntry(EntityType.PIG, 10, 4, 4));

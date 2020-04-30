@@ -13,18 +13,14 @@ import overgrowncities.feature.OgFeatures;
 public class OvergrowthSuburbsBiome extends OvergrowthBiome {
     public OvergrowthSuburbsBiome() {
         super(new Settings()
-                .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRASS_CONFIG)
+                .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRASS_CONFIG).effects(new BiomeEffects.Builder()
+                		.waterColor(0x236e37).waterFogColor(0x236e37).fogColor(0x236e37).build())
                 .precipitation(Precipitation.RAIN)
                 .category(Category.BEACH)
                 .depth(0.2F)
                 .scale(0.01F)
                 .temperature(0.8F)
                 .downfall(0.4F)
-                .effects(new BiomeEffects.Builder()
-                		.waterColor(0x236e37)
-                		.waterFogColor(0x236e37)
-                		.fogColor(0x236e37)
-                		.build())
                 .parent(null), 0);
 
         this.addStructureFeature(OgFeatures.CITY_STRUCTURE.configure(FeatureConfig.DEFAULT));

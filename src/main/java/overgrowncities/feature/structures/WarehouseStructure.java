@@ -30,7 +30,7 @@ public class WarehouseStructure extends StructureFeature<DefaultFeatureConfig> {
         int k = startXChunk + maxSeperation * currentXChunk;
         int p = startZChunk + maxSeperation * currentZChunk;
 
-        //voodoo mathy thingy here from vanilly
+        // voodoo mathy thingy here from vanilly
         int q = k < 0 ? k - maxSeperation + 1 : k;
         int r = p < 0 ? p - maxSeperation + 1 : p;
         int validXChunk = q / maxSeperation;

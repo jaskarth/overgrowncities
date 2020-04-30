@@ -20,7 +20,6 @@ public class OvergrowthChunkGenerator extends SurfaceChunkGenerator<OverworldChu
                 fs[i + 2 + (j + 2) * 5] = f;
             }
         }
-
     });
 
     private final OctavePerlinNoiseSampler depthSampler;
@@ -29,7 +28,6 @@ public class OvergrowthChunkGenerator extends SurfaceChunkGenerator<OverworldChu
         super(world, biomeSource, 4, 8, 256, config, true);
         List<Integer> octaves = new ArrayList<Integer>();
         octaves.add(15);
-        octaves.add(0);
         this.depthSampler = new OctavePerlinNoiseSampler(this.random, octaves);
     }
 

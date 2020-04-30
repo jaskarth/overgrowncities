@@ -119,7 +119,11 @@ public class WarehouseGenerator {
       
       @Override
     public boolean generate(IWorld world, StructureAccessor structureAccessor, ChunkGenerator<?> chunkGenerator, Random random, BlockBox boundingBox, ChunkPos chunkPos, BlockPos blockPos) {
-          StructurePlacementData structurePlacementData = (new StructurePlacementData()).setRotation(this.rotation).setMirror(BlockMirror.NONE).setPosition((BlockPos) WarehouseGenerator.PIECES_OFFSET.get(this.template)).addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS);
+          StructurePlacementData structurePlacementData = (new StructurePlacementData())
+        		  .setRotation(this.rotation)
+        		  .setMirror(BlockMirror.NONE)
+        		  .setPosition((BlockPos) WarehouseGenerator.PIECES_OFFSET.get(this.template))
+        		  .addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS);
           BlockPos blockPos1 = (BlockPos) WarehouseGenerator.COUNTER_OFFSET.get(this.template);
           this.pos.add(Structure.transform(structurePlacementData, new BlockPos(-blockPos1.getX(), 0, -blockPos1.getZ())));
 
@@ -139,6 +143,5 @@ public class WarehouseGenerator {
           }
           return created;
        }
-
    }
 }

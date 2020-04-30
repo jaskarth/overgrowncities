@@ -3,7 +3,11 @@ package overgrowncities.biome;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
+import net.minecraft.world.gen.decorator.CountExtraChanceDecoratorConfig;
+import net.minecraft.world.gen.decorator.Decorator;
+import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
+import net.minecraft.world.gen.GenerationStep;
 import overgrowncities.feature.OgFeatures;
 
 public class OvergrowthLakeBiome extends OvergrowthBiome {
@@ -33,9 +37,9 @@ public class OvergrowthLakeBiome extends OvergrowthBiome {
         DefaultBiomeFeatures.addSprings(this);
         DefaultBiomeFeatures.addFrozenTopLayer(this);
 
-//        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION,
-//                Feature.TREE.configure(OVERGROWN_TREE)
-//                        .createDecoratedFeature(Decorator.COUNT_EXTRA_HEIGHTMAP
-//                                .configure(new CountExtraChanceDecoratorConfig(6, 0.5F, 1))));
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION,
+                Feature.TREE.configure(OVERGROWN_TREE)
+                        .createDecoratedFeature(Decorator.COUNT_EXTRA_HEIGHTMAP
+                                .configure(new CountExtraChanceDecoratorConfig(6, 0.5F, 1))));
     }
 }
